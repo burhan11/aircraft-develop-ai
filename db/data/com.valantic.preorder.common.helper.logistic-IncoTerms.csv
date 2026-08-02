@@ -1,0 +1,16 @@
+ID,name
+CFR,Kosten und Fracht
+CIF,Kosten Versicherung & Fracht
+CIP,Frachtfrei versichert
+CPT,Frachtfrei
+DAF,Geliefert Grenze
+DAP,Delivered at Place
+DDP,Geliefert verzollt
+DDU,Geliefert unverzollt
+DEQ,Geliefert ab Kai (verzollt)
+DES,Geliefert ab Schiff
+EXW,Ab Betrieb
+FAS,Frei Längsseite Seeschiff
+FCA,Frei Frachtführer
+FH,Frei Haus
+FOB,Frei an Bord

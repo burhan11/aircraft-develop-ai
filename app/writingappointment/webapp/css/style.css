@@ -1,0 +1,6 @@
+/* Keep Share popover inside screen */
+.sapMMenu.sapMPopover {
+  max-width: calc(100vw - 16px) !important;
+  right: 8px !important;
+  left: auto !important;
+}

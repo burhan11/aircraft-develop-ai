@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="massChangeDialog" title="{i18n>massChange.title}" type="Message" stretch="true">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <RadioButtonGroup columns="2" selectedIndex="{view>/massChange/modeIndex}">
+                    <buttons>
+                        <RadioButton text="{i18n>massChange.mode.percent}" />
+                        <RadioButton text="{i18n>massChange.mode.absolute}" />
+                    </buttons>
+                </RadioButtonGroup>
+                <HBox class="sapUiSmallMarginTop" alignItems="Center">
+                    <Label text="{i18n>massChange.value}" labelFor="mcValue" />
+                    <Input id="mcValue" width="10rem" type="Number" value="{view>/massChange/value}" />
+                </HBox>
+                <CheckBox text="{i18n>massChange.applyTotal}"
+                    selected="{view>/massChange/applyTotal}" />
+                <CheckBox text="{i18n>massChange.applyPerHg}"
+                    selected="{view>/massChange/applyPerHg}" />
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="{i18n>common.cancel}" press="onMassChangeCancel" />
+            <Button text="{i18n>common.save}" type="Emphasized" press="onMassChangeConfirm" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

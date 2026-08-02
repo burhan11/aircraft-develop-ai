@@ -1,0 +1,188 @@
+
+erDiagram
+    Suppliers {
+        uuid supplierID PK  "BBN"
+        string supplierName
+        uuid consumerTopicID PK "KT"
+        uuid topicComponentID FK "TBS"
+        string pricatCatalogID "Pricat Katalog"
+        uuid gridBoxID FK "9-Grid-Box"
+        uuid itemTypeID FK "Artikeltyp"
+        uuid brandNumberID PK "Markennummer"
+        uuid targetGroupID FK "Zielgruppe"
+        uuid programID FK "Programm"
+        decimal vat "MWST"
+        uuid omnichannelID FK "Omnichannel"
+        string priceLevel "Ebene Preisartikel" 
+        uuid countryOfOriginID FK "Ursprungsland"
+        uuid transportChainID FK "Transportkette"
+        uuid distributionProfileID FK "Verteilungsprofil"
+        uuid goodsDistributionID FK "Warenverteilung"
+        uuid ownershipStatusID FK "Eigentumsverhältnis"
+        uuid shippingInstructionID FK "Versandvorschrift"
+        uuid loadingGroupID FK "Laddegruppe"
+        %% uuid vkhmCodeID FK "VKHM"
+        boolean hasLabel "Auszeichnung"
+        uuid labelingMethodID FK "Auszeichnungsmethode"
+        boolean hasProtection "Sicherung"
+        uuid protectionMethodID FK "Sicherungsmethode"
+        boolean hanger "Bügel"
+        uuid hangerMethodID FK "Bügel"
+        uuid storageLocationID FK "Lagerort"
+        date availableFrom "Lieferbar ab"
+        date availableUntil "Lieferbar bis"
+        date endOfLifeCycle "Ende Lebenszyklus"
+        string supplierContact "Lieferanten Ansprechpartner"
+        date createdAt
+        string createdBy
+        date modifiedAt
+        string modifiedBy
+    }
+
+    StorageLocations {
+        uuid storageLocationID PK
+        string name
+        string description
+    }
+
+    ShippingInstructions {
+        uuid shippingInstructionID PK
+        string name
+        string description
+    }
+    LoadingGroups {
+        uuid loadingGroupID PK
+        string name
+        string description
+    }
+    %% VkhmCodes {
+    %%     uuid vkhmCodeID PK
+    %%     string name
+    %%     string description
+    %% }
+
+    OwnershipStatus {
+        uuid ownershipStatusID PK
+        string name
+        string description
+    }
+
+    GoodsDistributions {
+        uuid goodsDistributionID PK
+        string name
+        string description
+    }
+
+    DistributionProfiles {
+        uuid distributionProfileID PK
+        string name
+        string description
+    }
+    
+    TransportChains {
+        uuid transportChainID PK
+        string name
+        string description
+    }
+
+    BrandNumbers {
+        uuid brandNumberID PK
+        string name
+        string description
+    }
+
+    Omnichannels {
+        uuid omnichannelID PK
+        string name
+        string description
+    }
+
+    CountryOfOrigins {
+        uuid countryOfOriginID PK
+        string name
+        string description
+    }
+
+    ConsumerTopics{
+        uuid consumerTopicID PK
+        string name
+        string description
+    }
+
+    TopicComponents{
+        uuid topicComponentID PK
+        string name
+        string description
+    }
+
+    ProductGroups {
+        uuid productGroupID PK
+        string name
+        string sapProductGroup "WG SAP"
+        string assortmentComponent "SBS SAP"
+        uuid supplierID FK "Refers to Supplier"
+    }
+
+    Programs {
+        uuid programID PK
+        string name
+        string number 
+        uuid supplierID FK "Refers to Supplier"
+    }
+
+    NineGridBoxes{
+        uuid gridBoxID PK
+        string name
+        string description
+    }
+
+    ItemTypes{
+        uuid itemTypeID PK
+        string name
+        string description
+    }
+
+    TargetGroups{
+        uuid targetGroupID PK
+        string name
+        string description
+    }
+
+    LabelingMethods {        
+        uuid labelingMethodID PK
+        string name      
+        string description
+    }
+
+    ProtectionMethods {        
+        uuid protectionMethodID PK
+        string name      
+        string description
+    }
+    HangerMethods {        
+        uuid hangerMethodID PK
+        string name      
+        string description
+    }
+
+    Suppliers ||--o{ ProductGroups : "has 1..n"
+    Suppliers ||--o{ Programs : "has 1..n"
+    Suppliers }|--|| NineGridBoxes: "uses"
+    Suppliers }|--|| ItemTypes: "uses"
+    Suppliers }|--|| TargetGroups: "uses"
+    Suppliers }|--|| TopicComponents: "uses"
+    Suppliers }|--|| ConsumerTopics: "uses"
+    Suppliers }|--|| CountryOfOrigins: "uses"
+    Suppliers }|--|| Omnichannels: "uses"
+    Suppliers }|--|| BrandNumbers: "uses"   
+    Suppliers }|--|| TransportChains: "uses"
+    Suppliers }|--|| DistributionProfiles: "uses"
+    Suppliers }|--|| GoodsDistributions: "uses"    
+    Suppliers }|--|| OwnershipStatus: "uses"
+    Suppliers }|--|| LoadingGroups: "uses"
+    Suppliers }|--|| ShippingInstructions: "uses"
+    Suppliers }|--|| VkhmCodes: "uses"
+    Suppliers }|--|| StorageLocations: "uses"
+    Suppliers ||--o{ LabelingMethods : "has 1..n"
+    Suppliers ||--o{ ProtectionMethods : "has 1..n"
+    Suppliers ||--o{ HangerMethods : "has 1..n"

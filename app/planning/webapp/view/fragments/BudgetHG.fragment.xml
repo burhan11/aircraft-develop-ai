@@ -1,0 +1,214 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <uxap:ObjectPageSubSection
+        id="budgetHGSubSection"
+        title="{i18n>budgetHG.title}"
+        mode="Expanded"
+    >
+    <uxap:moreBlocks>
+           <m:VBox class="sapUiSmallMargin">
+                <table:Table
+                    id="budgetHGTable"
+                    rows="{budgetData>/transposedRows}"
+                    selectionMode="None"
+                    ariaLabelledBy="title">
+                    <table:columns>
+                        <table:Column width="100px">
+                            <m:Label text="" design="Bold"/>
+                            <table:template>
+                                <m:Label 
+                                    text="{
+                                        path: 'budgetData>label',
+                                        formatter: '.getText'
+                                    }" 
+                                    design="Bold"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup1}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg1', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg1State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup2}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg2', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg2State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup3}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg3', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg3State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup4}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg4', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg4State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup5}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg5', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg5State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup6}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg6', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg6State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup7}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg7', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg7State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup8}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg8', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg8State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup9}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg9', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg9State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup10}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg10', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg10State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup11}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg11', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg11State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup12}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg12', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg12State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup13}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg13', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg13State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup14}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg14', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg14State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>planning.houseGroup15}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{
+                                        parts: ['budgetData>hg15', 'budgetData>label'],
+                                        formatter: '.formatBudgetValue'
+                                    }"
+                                    state="{budgetData>hg15State}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="auto">
+                            <m:Label text="{i18n>budgetKT.total}" design="Bold"/>
+                            <table:template>
+                                <m:ObjectStatus 
+                                    text="{budgetData>overall}"
+                                    state="{budgetData>overallState}"/>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+        </m:VBox>
+        </uxap:moreBlocks>
+    </uxap:ObjectPageSubSection>
+</core:FragmentDefinition>

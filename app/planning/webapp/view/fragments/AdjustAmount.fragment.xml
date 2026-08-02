@@ -1,0 +1,111 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog
+		id="adjustHGDialog"
+		title="{i18n>adjustAmount.title}"
+		contentWidth="80%"
+		contentHeight="auto"
+		draggable="true"
+		resizable="true"
+        >
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<SegmentedButton
+					id="idAdjustModeSegmentedButton"
+					selectionChange="onUnitSelectionChange"
+					selectedKey="percentage"
+					class="sapUiSmallMarginBottom">
+					<items>
+						<SegmentedButtonItem
+							id="percentageModeBtn"
+							text="{i18n>adjustAmount.percentage}"
+							key="percentage" />
+						<SegmentedButtonItem
+							id="directInputModeBtn"
+							text="{i18n>adjustAmount.direct}"
+							key="direct" />
+					</items>
+				</SegmentedButton>
+
+				<!-- Content for Adjust by Percentage Mode -->
+				<VBox id="percentagePanel" visible="true">
+                <HBox class="sapUiSmallMarginBottom">
+					<CheckBox
+						id="chkOverallPercentageToggle"
+						selected="{adjustAmount>/overallPercentageToggle}"
+						select="onOverallPercentageToggle"
+						class="sapUiSmallMarginBottom" 
+                        text="{i18n>adjustAmount.overallAmount}"/>
+
+					
+						<Input
+							id="idOverallPercentageInput"
+							type="Number"
+							placeholder="{adjustAmount>/placeholderText}"
+                            description="{adjustAmount>/unitDescription}"
+							value="{adjustAmount>/overallAmount}"
+                            enabled="{adjustAmount>/overallPercentageToggle}"
+                             />
+							</HBox>
+					
+                    <Panel expandable="true" expanded="{= !${adjustAmount>/overallPercentageToggle} }" headerText="{i18n>adjustAmount.individualPanel}" class="sapUiSmallMarginBottom">
+					<f:SimpleForm
+						id="individualPercentageForm"
+						editable="true"
+						layout="ColumnLayout"
+						labelSpanXL="3"
+						labelSpanL="3"
+						labelSpanM="3"
+						labelSpanS="12"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false"
+						class="sapUiSmallMarginBottom">
+						<f:content>
+							<Label text="{i18n>planning.houseGroup1}" />
+							<Input id="inputHG1_P" type="Number" value="{adjustAmount>/houseGroup1}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+							<Label text="{i18n>planning.houseGroup2}" />
+							<Input id="inputHG2_P" type="Number" value="{adjustAmount>/houseGroup2}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }" />
+							<Label text="{i18n>planning.houseGroup3}" />
+							<Input id="inputHG3_P" type="Number" value="{adjustAmount>/houseGroup3}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+							<Label text="{i18n>planning.houseGroup4}" />
+							<Input id="inputHG4_P" type="Number" value="{adjustAmount>/houseGroup4}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }" />
+							<Label text="{i18n>planning.houseGroup5}" />
+							<Input id="inputHG5_P" type="Number" value="{adjustAmount>/houseGroup5}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+							<Label text="{i18n>planning.houseGroup6}" />
+							<Input id="inputHG6_P" type="Number" value="{adjustAmount>/houseGroup6}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup7}" />
+							<Input id="inputHG7_P" type="Number" value="{adjustAmount>/houseGroup7}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup8}" />
+							<Input id="inputHG8_P" type="Number" value="{adjustAmount>/houseGroup8}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup9}" />
+							<Input id="inputHG9_P" type="Number" value="{adjustAmount>/houseGroup9}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup10}" />
+							<Input id="inputHG10_P" type="Number" value="{adjustAmount>/houseGroup10}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup11}" />
+							<Input id="inputHG11_P" type="Number" value="{adjustAmount>/houseGroup11}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup12}" />
+							<Input id="inputHG12_P" type="Number" value="{adjustAmount>/houseGroup12}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup13}" />
+							<Input id="inputHG13_P" type="Number" value="{adjustAmount>/houseGroup13}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+                            <Label text="{i18n>planning.houseGroup14}" />
+							<Input id="inputHG14_P" type="Number" value="{adjustAmount>/houseGroup14}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+							<Label text="{i18n>planning.houseGroup15}" />
+							<Input id="inputHG15_P" type="Number" value="{adjustAmount>/houseGroup15}" placeholder="{adjustAmount>/placeholderText}" description="{adjustAmount>/unitDescription}" enabled="{= !${adjustAmount>/overallPercentageToggle} }"/>
+						</f:content>
+					</f:SimpleForm>
+                    </Panel>
+				</VBox>
+
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>common.save}" press="onConfirmAdjustAmount" type="Emphasized" />
+			<Button text="{i18n>common.cancel}" press="onCancelAdjustAmount" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

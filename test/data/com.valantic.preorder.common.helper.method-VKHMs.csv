@@ -1,0 +1,5 @@
+ID,name,description,createdAt,createdBy,modifiedAt,modifiedBy
+8432b7f8-9cbc-4ace-8174-777b50fddcda,VKHM 1,Description for Protection VKHM 1,2023-10-01T00:00:00Z,admin,2023-10-01T00:00:00Z,admin
+9432c809-adcd-5bdf-9285-888c61feeceb,VKHM 2,Description for Protection VKHM 2,2023-10-02T00:00:00Z,user1,2023-10-03T00:00:00Z,user2
+a432d81a-bede-6cef-a396-999d72fffd0c,VKHM3,Description for Protection VKHM 3,2023-10-03T00:00:00Z,user3,2023-10-04T00:00:00Z,user4
+00000000-0000-0000-0000-000000006001,VKHM 4,Description for Protection VKHM 4,2023-10-04T00:00:00Z,user4,2023-10-05T00:00:00Z,user5

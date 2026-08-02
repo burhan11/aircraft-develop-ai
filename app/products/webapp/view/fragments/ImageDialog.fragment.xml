@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+    <Dialog title="{i18n>imageDialog.title}" 
+            class="sapUiMediumMargin" 
+            resizable="true"
+            draggable="true">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <!-- Upload Method Selection -->
+                <RadioButtonGroup id="uploadMethodGroup" selectedIndex="0" select="onUploadMethodChange">
+                    <RadioButton text="{i18n>imageDialog.uploadFile}" selected="true"/>
+                    <RadioButton text="{i18n>imageDialog.enterUrl}"/>
+                </RadioButtonGroup>
+                
+                <VBox class="sapUiLargeMarginTop">
+                    <!-- File Upload Section -->
+                    <VBox id="fileUploadSection" visible="true">
+                        <u:FileUploader 
+                            id="imageFileUploader"
+                            name="imageFile"
+                            uploadUrl=""
+                            tooltip="{i18n>imageDialog.uploadTooltip}"
+                            uploadComplete="onFileUploadComplete"
+                            change="onFileChange"
+                            fileType="jpg,jpeg,png,gif,bmp,webp"
+                            mimeType="image/jpeg,image/png,image/gif,image/bmp,image/webp"
+                            maximumFileSize="10"
+                            multiple="false"
+                            buttonText="{i18n>imageDialog.chooseFile}"
+                            placeholder="{i18n>imageDialog.chooseFilePlaceholder}"
+                            style="Emphasized"
+                            class="sapUiMediumMarginBottom"/>
+                        
+                        <!-- File Info -->
+                        <VBox id="fileInfoBox" visible="false" class="sapUiMediumMarginBottom">
+                            <Label text="{i18n>imageDialog.selectedFile}"/>
+                            <Text id="fileNameText" class="sapUiTinyMarginTop"/>
+                            <Text id="fileSizeText" class="sapUiTinyMarginTop"/>
+                        </VBox>
+                    </VBox>
+                    
+                    <!-- URL Input Section -->
+                    <VBox id="urlInputSection" visible="false">
+                        <Input 
+                            id="imageUrlInput"
+                            placeholder="{i18n>imageDialog.urlPlaceholder}"
+                            value=""
+                            liveChange="onUrlChange"
+                            class="sapUiMediumMarginBottom"/>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </content>
+        <buttons>
+            <Button 
+                text="{i18n>imageDialog.upload}" 
+                type="Emphasized"
+                press="onUploadImage"
+                enabled="false"
+                id="uploadButton"/>
+            <Button text="{i18n>imageDialog.cancel}" press="onCloseImageDialog"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

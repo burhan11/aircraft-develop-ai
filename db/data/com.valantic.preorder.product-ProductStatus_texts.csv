@@ -1,0 +1,19 @@
+ID,locale,name
+InProgress,de,In Bearbeitung
+NewSupplierProduct,de,Neuer Lieferantenartikel
+ToCheck,de,Prüfen
+RequestedToSAP,de,Freigeben
+CreationFailed,de,Anlage fehlgeschlagen
+CreatedInSAP,de,In ERP angelegt
+MarkedForDeletion,de,Zur Löschung markiert
+ReleasedForSupplier,de,Freigeben für Lieferanten
+PartiallyCreatedInSAP,de,Nicht vollständig in ERP erstellt
+InProgress,en,In Progress
+NewSupplierProduct,en,New Supplier Product
+ToCheck,en,Check
+RequestedToSAP,en,Release
+CreationFailed,en,Creation Failed
+CreatedInSAP,en,Created in ERP
+MarkedForDeletion,en,Marked for Deletion
+ReleasedForSupplier,en,Release for Supplier
+PartiallyCreatedInSAP,en,Not fully created in ERP

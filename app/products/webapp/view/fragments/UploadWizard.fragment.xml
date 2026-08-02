@@ -1,0 +1,222 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:t="sap.ui.table"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+>
+
+    <Dialog id="uploadWizardDialog" title="{i18n>wizard.dialog.title}" contentWidth="80%"
+        afterClose="onWizardCancel" class="wizardHeaderDisabled">
+        <content>
+            <Wizard
+                id="uploadWizard"
+                renderMode="Page"
+                finishButtonText="Anlegen"
+                showNextButton="false"
+                complete="onWizardCompleted"
+                stepActivate="onUploadWizardStepActivate"
+            >
+
+                <!-- ############### SCHRITT 1: Header-Daten ############### -->
+                <WizardStep id="step1" title="{i18n>wizard.step1.title}" validated="false"
+                    nextStep="step2">
+                    <smartForm:SmartForm id="_IDGenSmartForm1"
+                        title="{i18n>massEdit.basic.title}"
+                        editTogglable="false"
+                        validationMode="Async"
+                        editable="true"
+                        class="uploadWizardSmartForm">
+                        <smartForm:layout>
+                            <smartForm:ColumnLayout columnsM="1" columnsL="1" columnsXL="1" />
+                        </smartForm:layout>
+                        <smartForm:Group>
+                            <smartForm:GroupElement label="{i18n>wizard.step1.consumerTopic}">
+                                <smartField:SmartField id="selectKT" value="{consumerTopic_ID}" textInEditModeSource="ValueList" changeModelValue="onFilterChange"/>
+                            </smartForm:GroupElement>
+                        </smartForm:Group>
+                        <smartForm:Group>
+                            <smartForm:GroupElement label="{i18n>wizard.step1.brand}">
+                                <smartField:SmartField id="selectMarke" value="{brand_ID}" textInEditModeSource="ValueList" changeModelValue="onFilterChange" />
+                            </smartForm:GroupElement>
+                        </smartForm:Group>
+                        <smartForm:Group>
+                            <smartForm:GroupElement label="{i18n>wizard.step1.supplier}">
+                                <smartField:SmartField id="selectLieferant" value="{supplier_ID}" textInEditModeSource="ValueList" changeModelValue="onFilterChange"/>
+                            </smartForm:GroupElement>
+                        </smartForm:Group>
+                        <smartForm:Group>
+                            <smartForm:GroupElement label="{i18n>wizard.step1.orderDate}">
+                              <Select id="selectSchreibtermin" items="{wizard>/FilteredWritingAppointments}" 
+                                enabled="{= !!${wizard>/FilteredWritingAppointments} }" change="onFilterChange" forceSelection="false">
+                                <core:Item 
+                                    key="{wizard>ID}"
+                                    text="{= ${wizard>name} + ' (' + ${
+                                        path: 'wizard>date',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {style: 'medium'}
+                                    } + ')' }"/>
+                            </Select>
+                            </smartForm:GroupElement>
+                        </smartForm:Group>
+                    </smartForm:SmartForm>
+                    <!-- GPOPT-1449 -->
+                    <!-- <f:SimpleForm id="_IDGenSimpleForm1" editable="true"
+                        layout="ResponsiveGridLayout">
+
+
+                        <Label id="_IDGenLabel1" text="{i18n>wizard.step1.consumerTopic}"
+                            required="true" />
+                        <Input
+                            id="selectKT"
+                            showValueHelp="true"
+                            valueHelpRequest=".onGenericValueHelpRequest"
+                            showSuggestion="true"
+                            suggest=".onGenericSuggest"
+                            suggestionItemSelected=".onGenericSuggestionItemSelectedUploadWizard"
+                            change="onFilterChange"
+                        >
+                            <customData>
+                                <core:CustomData key="dialogTitle"
+                                    value="{i18n>wizard.step1.consumerTopic}" />
+                                <core:CustomData key="entitySet" value="/ConsumerTopics" />
+                                <core:CustomData key="titleKey" value="ID" />
+                                <core:CustomData key="descKey" value="NAME" />
+                            </customData>
+                        </Input>
+
+                        <Label id="_IDGenLabel2" text="{i18n>wizard.step1.brand}" required="true" />
+                        <Input
+                            id="selectMarke"
+                            showValueHelp="true"
+                            valueHelpRequest=".onGenericValueHelpRequest"
+                            showSuggestion="true"
+                            suggest=".onGenericSuggest"
+                            suggestionItemSelected=".onGenericSuggestionItemSelectedUploadWizard"
+                            change="onFilterChange"
+                        >
+                            <customData>
+                                <core:CustomData key="dialogTitle" value="{i18n>wizard.step1.brand}" />
+                                <core:CustomData key="entitySet" value="/Brands" />
+                                <core:CustomData key="titleKey" value="ID" />
+                                <core:CustomData key="descKey" value="NAME" />
+                            </customData>
+                        </Input>
+
+                        <Label id="_IDGenLabel" text="{i18n>wizard.step1.supplier}" required="true" />
+                        <Input
+                            id="selectLieferant"
+                            showValueHelp="true"
+                            valueHelpRequest=".onGenericValueHelpRequest"
+                            showSuggestion="true"
+                            suggest=".onGenericSuggest"
+                            suggestionItemSelected=".onGenericSuggestionItemSelectedUploadWizard"
+                            change="onFilterChange"
+                        >
+                            <customData>
+                                <core:CustomData key="dialogTitle"
+                                    value="{i18n>wizard.step1.supplier}" />
+                                <core:CustomData key="entitySet" value="/Suppliers" />
+                                <core:CustomData key="titleKey" value="ID" />
+                                <core:CustomData key="descKey" value="NAME" />
+                            </customData>
+                        </Input>
+
+                        <Label id="_IDGenLabel3" text="{i18n>wizard.step1.orderDate}"
+                            required="false" />
+                        <Select
+                            id="selectSchreibtermin"
+                            items="{wizard>/FilteredWritingAppointments}"
+                            enabled="{= !!${wizard>/FilteredWritingAppointments} }"
+                            change="onFilterChange"
+                            forceSelection="false"
+                        >
+                            <core:Item
+                                key="{wizard>ID}"
+                                text="{= ${wizard>name} + ' (' + ${
+                                    path: 'wizard>date',
+                                    type: 'sap.ui.model.type.Date',
+                                    formatOptions: {style: 'medium'}
+                                } + ')' }"
+                            />
+                        </Select>
+
+                    </f:SimpleForm> -->
+                </WizardStep>
+
+                <!-- ############### SCHRITT 2: Artikelauswahl ############### -->
+                <WizardStep id="step2" title="{i18n>wizard.step2.title}" nextStep="step3"
+                >
+                    <u:FileUploader
+                        id="fileUploader"
+                        name="myFileUpload"
+                        uploadUrl="upload/"
+                        tooltip="{i18n>wizard.step2.fileUploaderTooltip}"
+                        fileType="xlsx,xls"
+                        change="onFileChange"
+                    />
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.products.view.fragments.Table"
+                        type="XML"
+                    ></core:Fragment>
+                </WizardStep>
+
+                <!-- ############### SCHRITT 3: Optionale Felder ############### -->
+                <WizardStep id="step3" title="{i18n>wizard.step3.title}"
+                    nextStep="step4">
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.products.view.fragments.MassEdit"
+                        type="XML"
+                    ></core:Fragment>
+                </WizardStep>
+
+                <!-- ############### SCHRITT 4: Überprüfung & Speichern ############### -->
+                <WizardStep id="step4" title="{i18n>wizard.step4.title}" validated="true"
+                >
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.products.view.fragments.Review"
+                        type="XML"
+                    ></core:Fragment>
+                </WizardStep>
+
+            </Wizard>
+        </content>
+        <footer>
+
+            <Toolbar>
+                <ToolbarSpacer></ToolbarSpacer>
+
+                <!-- Back Button: Visible on step 2, 3 (not step 1, not step 4) -->
+                <Button text="{i18n>wizard.backButton}"
+                    press="onUploadBackStep"
+                    class="sapUiSmallMarginEnd"
+                    visible="{= ${wizard>/currentStep} !== 'step1' }" />
+                    <!-- GPOPT-1448: Make backButton visible at step4
+                    &amp;&amp; ${wizard>/currentStep} !== 'step4' -->
+
+                <!-- Next Button: Visible on step 1, 2, 3 (not step 4) -->
+                <Button text="{i18n>wizard.nextButton}"
+                    press="onUploadNextStep"
+                    type="Emphasized"
+                    enabled="{wizard>/step1Validated}"
+                    visible="{= ${wizard>/currentStep} !== 'step4' }"
+                />
+
+                <!-- Save Button: Visible only on step 4 -->
+                <Button text="{i18n>wizard.saveButton}"
+                    press="onWizardCompleted"
+                    type="Emphasized"
+                    visible="{= ${wizard>/currentStep} === 'step4' }"
+                />
+
+                <Button id="_IDGenButton1" text="{i18n>wizard.dialog.cancelButton}"
+                    press="onWizardCancel" />
+            </Toolbar>
+
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>

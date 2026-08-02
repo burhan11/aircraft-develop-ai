@@ -1,0 +1,203 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.valantic.preorder.products",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.3",
+      "toolsId": "72404256-14f3-4db5-8901-8aa852fb9fef"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v2/product/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "2.0"
+        }
+      },
+      "mainServiceV4": {
+        "uri": "/odata/v4/product/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Products": {
+          "semanticObject": "Products",
+          "action": "display",
+          "icon": "sap-icon://product",
+          "title": "{{appTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "_version": "1.2.0",
+    "public": true,
+    "service": "com.valantic.preorder"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "handleValidation": true,
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.138.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.ui.comp": {},
+        "sap.ui.fl": {},
+        "sap.ui.layout": {},
+        "sap.ui.mdc": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.valantic.preorder.products.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "defaultBindingMode": "TwoWay",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "defaultCountMode": "Inline",
+          "sizeLimit": 1000
+        }
+      },
+      "ODataV4": {
+        "dataSource": "mainServiceV4",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.valantic.preorder.products.view",
+        "async": true,
+        "viewPath": "com.valantic.preorder.products.view"
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+          "name": "RouteProductDetails",
+          "pattern": "ProdDetails/{id}/:?query:",
+          "target": [
+            "TargetProductDetails"
+          ]
+        },
+        {
+          "name": "RouteArticleDetails",
+          "pattern": "ArticleDetails/{id}/:?query:",
+          "target": [
+            "TargetArticleDetails"
+          ]
+        },
+        {
+          "name": "RouteVariantDetails",
+          "pattern": "VariantDetails/{id}/:?query:",
+          "target": [
+            "TargetVariantDetails"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "TargetProductDetails": {
+          "id": "ProductDetails",
+          "name": "ProductDetails"
+        },
+        "TargetArticleDetails": {
+          "id": "ArticleDetails",
+          "name": "ArticleDetails"
+        },
+        "TargetVariantDetails": {
+          "id": "VariantDetails",
+          "name": "VariantDetails"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.valantic.preorder.products.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

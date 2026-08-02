@@ -1,0 +1,140 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <smartTable:SmartTable
+        id="planningProductSizesSmartTableWithoutHG"
+        entitySet="PlanningProductSizes"
+        smartFilterId="planningProductsSmartFilterBar"
+        tableType="Table"
+        useVariantManagement="true"
+        useTablePersonalisation="true"
+        showRowCount="true"
+        persistencyKey="PlanningProductSizesTableKeyWithoutHG"
+        enableAutoBinding="true"
+        class="sapUiResponsiveContentPadding"
+        enableAutoColumnWidth="true"
+        enableCopy="false"
+        enableExport="false"
+        editTogglable="{= (${status_ID} === 'InProgress' || ${status_ID} === 'CreationFailed') &amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+        app:useSmartToggle="true"
+        app:useSmartField="true"
+        requestAtLeastFields="productSize/imageUrl,productSize/isUploaded,index,differingHouseGroups/houseGroup_ID,product_supplyType_SUPPLY_TYPE,productSize/supplier_ID"
+        changeModelValue="onChangeModelValue"
+        beforeRebindTable="onBeforeRebindPlanningTable"
+        ignoredFields="differingSizeKey,houseGroup1,houseGroup2,houseGroup3,houseGroup4,houseGroup5,houseGroup6,houseGroup7,houseGroup8,houseGroup9,houseGroup10,houseGroup11,houseGroup12,houseGroup13,houseGroup14,houseGroup15,index,isManuallyEdited,isValidSizeCurve,productionPlant_SUPPLIER"
+        customizeConfig='{"textInEditModeSource": {"*": "ValueList"}}' 
+    >
+        <smartTable:customToolbar>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    id="generateDefaultPsWithoutHG"
+                    text="{i18n>planning.generateDefault}"
+                    type="Transparent"
+                    press=".onGenerateDefaultAmounts"
+                    enabled="{= (${status_ID} === 'InProgress')&amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                />
+                <m:Button
+                    id="amountChangeWithoutHGPS"
+                    text="{i18n>planning.amountChange}"
+                    type="Transparent"
+                    press="openAmountChangeDialog"
+                    enabled="false"
+                />
+                <m:Button
+                    id="deletePlanningProductsWithoutHGPS"
+                    text="{i18n>delete}"
+                    type="Transparent"
+                    press=".onDeleteSelectedProducts"
+                    enabled="false"
+                />
+                <m:Button
+                    id="showBudgetWithoutHGPS"
+                    text=""
+                    type="Transparent"
+                    press=".onShowBudgetHG"
+                    enabled="false"
+                />
+            </m:OverflowToolbar>
+        </smartTable:customToolbar>
+
+        <t:Table enableColumnFreeze="true">
+            <t:rowMode>
+                <rowmodes:Auto minRowCount="30"></rowmodes:Auto>
+            </t:rowMode>
+            <t:columns>
+                <t:Column
+                    id="imageUrlWithoutHGPS"
+                    autoResizable="true"
+                    resizable="true"
+                    hAlign="Center"
+                    minWidth="80px"
+                >
+                    <t:customData>
+                        <core:CustomData
+                            key="p13nData"
+                            value="{'columnKey': 'productSize/imageUrl','columnIndex':'2'}"
+                        />
+                    </t:customData>
+                    <t:label>
+                        <m:Label text="{i18n>planning.imageUrl}" />
+                    </t:label>
+                    <t:template>
+                        <m:VBox
+                            justifyContent="Center"
+                            alignItems="Center"
+                            width="100%"
+                            height="100%"
+                        >
+                            <m:Image
+                                src="{productSize/imageUrl}"
+                                width="auto"
+                                height="50px"
+                                decorative="false"
+                                alt="ProductSize Image"
+                                densityAware="false"
+                                class="sapUiTinyMargin"
+                            />
+                        </m:VBox>
+                    </t:template>
+                </t:Column>
+                <t:Column
+                    id="houseGroupLabelWithoutHGPS"
+                    autoResizable="true"
+                    resizable="true"
+                    hAlign="Center"
+                    minWidth="80px"
+                >
+                    <t:customData>
+                        <core:CustomData
+                            key="p13nData"
+                            value="{'columnKey': 'houseGroupLabel','columnIndex':'15'}"
+                        />
+                    </t:customData>
+                    <t:label>
+                        <m:Label text="" />
+                    </t:label>
+                    <t:template>
+                        <m:VBox
+                            justifyContent="Center"
+                            alignItems="Center"
+                            width="100%"
+                            height="100%"
+                        >
+                            <m:Text text="" />
+                        </m:VBox>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+    </smartTable:SmartTable>
+</core:FragmentDefinition>

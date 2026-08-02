@@ -1,0 +1,10 @@
+ID
+InProgress
+NewSupplierProduct
+ToCheck
+RequestedToSAP
+CreationFailed
+CreatedInSAP
+MarkedForDeletion
+ReleasedForSupplier
+PartiallyCreatedInSAP

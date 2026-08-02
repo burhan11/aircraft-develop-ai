@@ -1,0 +1,166 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:t="sap.ui.table"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <uxap:ObjectPageSubSection
+        id="budgetKTSubSection"
+        title="{i18n>budgetKT.title}"
+        mode="Expanded"
+    >
+        <uxap:moreBlocks>
+            <t:TreeTable
+                id="budgetTreeTable"
+                rows="{
+                    path: 'budgetKT>/accounts',
+                    parameters: {
+                        arrayNames: ['children']
+                    }
+                }"
+                selectionMode="None"
+                enableColumnReordering="false"
+                toggleOpenState=".onBudgetTreeToggleOpenState"
+                >
+                <t:rowMode>
+                    <rowmodes:Fixed id="budgetTreeRowMode" rowCount="6"/>
+                </t:rowMode>
+                <t:columns>
+                    <t:Column width="300px">
+                        <m:Label text="{i18n>budgetKT.account}"/>
+                        <t:template>
+                            <m:Text text="{
+                                path: 'budgetKT>account',
+                                formatter: '.getBudgetKTAccountText'
+                            }"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column >
+                        <m:Label text="{i18n>budgetKT.total}"/>
+                        <t:template>
+                            <m:Text text="{
+                                path: 'budgetKT>total',
+                                formatter: '.formatBudgetNumber'
+                            }"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/0/month'}, {path: 'budgetKT>/monthsWithYear/0/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m0', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/1/month'}, {path: 'budgetKT>/monthsWithYear/1/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m1', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/2/month'}, {path: 'budgetKT>/monthsWithYear/2/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m2', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/3/month'}, {path: 'budgetKT>/monthsWithYear/3/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m3', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/4/month'}, {path: 'budgetKT>/monthsWithYear/4/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m4', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/5/month'}, {path: 'budgetKT>/monthsWithYear/5/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m5', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/6/month'}, {path: 'budgetKT>/monthsWithYear/6/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m6', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/7/month'}, {path: 'budgetKT>/monthsWithYear/7/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m7', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/8/month'}, {path: 'budgetKT>/monthsWithYear/8/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m8', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/9/month'}, {path: 'budgetKT>/monthsWithYear/9/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m9', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/10/month'}, {path: 'budgetKT>/monthsWithYear/10/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m10', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/11/month'}, {path: 'budgetKT>/monthsWithYear/11/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m11', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/12/month'}, {path: 'budgetKT>/monthsWithYear/12/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m12', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/13/month'}, {path: 'budgetKT>/monthsWithYear/13/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m13', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/14/month'}, {path: 'budgetKT>/monthsWithYear/14/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m14', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/15/month'}, {path: 'budgetKT>/monthsWithYear/15/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m15', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/16/month'}, {path: 'budgetKT>/monthsWithYear/16/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m16', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <m:Label text="{parts: [{path: 'budgetKT>/monthsWithYear/17/month'}, {path: 'budgetKT>/monthsWithYear/17/year'}], formatter: '.formatColumnHeader'}"/>
+                        <t:template>
+                            <m:Text text="{path: 'budgetKT>m17', formatter: '.formatBudgetNumber'}"/>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:TreeTable>
+        </uxap:moreBlocks>
+    </uxap:ObjectPageSubSection>
+</core:FragmentDefinition>

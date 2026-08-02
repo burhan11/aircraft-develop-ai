@@ -1,0 +1,7 @@
+ID,name,description,createdAt,createdBy,modifiedAt,modifiedBy
+f4444355-50a0-42ac-bb88-6823da932952,Consumer Topic 1,Description2 for Consumer Topic 1,2023-10-01T00:00:00Z,admin,2023-10-01T00:00:00Z,admin
+g4445466-60b1-53bd-cc99-7934eb043a63,Consumer Topic 2,Description for Consumer Topic 2,2023-10-02T00:00:00Z,user1,2023-10-03T00:00:00Z,user2
+h4446577-71c2-64ce-ddaa-8a45fc154b74,Consumer Topic 3,Description for Consumer Topic 3,2023-10-03T00:00:00Z,user3,2023-10-04T00:00:00Z,user4
+i4447688-82d3-75df-eebb-9b56gd265c85,Consumer Topic 4,Description for Consumer Topic 4,2023-10-04T00:00:00Z,user5,2023-10-05T00:00:00Z,user6
+j4448799-93e4-86eg-ffcc-ac67he376d96,Consumer Topic 5,Description for Consumer Topic 5,2023-10-05T00:00:00Z,user7,2023-10-06T00:00:00Z,user8
+k4449810-a4f5-97fh-ggdd-bd78if487ea7,Consumer Topic 6,Description for Consumer Topic 6,2023-10-06T00:00:00Z,user9,2023-10-07T00:00:00Z,user10

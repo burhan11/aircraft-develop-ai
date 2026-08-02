@@ -1,0 +1,80 @@
+export const MandatoryFields = [
+  "module_CODE",
+  "targetGroup_ID",
+  "houseGroup_ID",
+  "supplierColor",
+  "evaluationColor_ID",
+  "supplyType_SUPPLY_TYPE",
+  "presentationType_CODE",
+  "availableFrom",
+  "availableUntil",
+  "endOfLifeCycle",
+  // "purchasePrice",
+  // "purchasePriceUSD",
+  // "purchasePriceEURNetto",
+  "retailPrice",
+  "ownershipStatus_ID",
+  "omnichannel_CODE",
+];
+
+export const ArticleMandatoryFields = [
+  "module_CODE",
+  "assortmentModule_ID",
+  "productGroup_ID",
+  "targetGroup_ID",
+  "houseGroup_ID",
+  "supplierProductNumber",
+  "productText",
+  "sizeSystem_ID",
+  "supplyType_SUPPLY_TYPE",
+  "seasonType_ID",
+  "seasonYear",
+  "presentationType_CODE",
+  "availableFrom",
+  "availableUntil",
+  "endOfLifeCycle",
+  "currency_ID",
+  "vat_ID",
+  // "purchasePrice",
+  // "purchasePriceUSD",
+  // "purchasePriceEURNetto",
+  "retailPrice",
+  "productType_ID",
+  "ownershipStatus_ID",
+  "gridBox_ID",
+  "omnichannel_CODE",
+  "shippingInstruction_ID",
+  "loadingGroup_ID",
+  "baseUnitOfMeasure_ID"
+];
+
+export const VariantMandatoryFields = [
+  "module_CODE",
+  "targetGroup_ID",
+  "houseGroup_ID",
+  "size_1_CODE",
+  "GTIN",
+  "supplyType_SUPPLY_TYPE",
+  "presentationType_CODE",
+  "availableFrom",
+  "availableUntil",
+  "endOfLifeCycle",
+  // "purchasePrice",
+  // "purchasePriceUSD",
+  // "purchasePriceEURNetto",
+  "retailPrice",
+  "ownershipStatus_ID", 
+  "omnichannel_CODE",
+];
+
+export const CurrencyDollarMandatoryFields = [
+  "purchasePrice",
+  "purchaseFactor",
+  "purchasePriceUSD",
+  "purchasePriceEURNetto",
+]
+
+export const CurrencyEuroMandatoryFields = [
+  "purchasePrice",
+  "purchasePriceEURNetto",
+]

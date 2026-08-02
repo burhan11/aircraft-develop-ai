@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        title="{view>/dialogTitle}"
+        confirm=".onValueHelpConfirm"
+        search=".onValueHelpSearch"
+        cancel=".onValueHelpCancel">
+        <!-- We will bind the items aggregation dynamically in the controller -->
+    </SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,49 @@
+<mvc:View
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:f="sap.f"
+    controllerName="com.valantic.aircrafts.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <f:DynamicPage headerPinned="true">
+        <f:header>
+            <f:DynamicPageHeader>
+                <smartfilterbar:SmartFilterBar
+                    id="idAeroplaneFilterBar"
+                    enableBasicSearch="false"
+                    entitySet="Aeroplanes"
+                    persistencyKey="SmartFilterBarAeroplane_Explored"
+                />
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <smarttable:SmartTable
+                id="idAeroplaneSmartTable"
+                editable="false"
+                editTogglable="false"
+                enableAutoBinding="true"
+                tableType="ResponsiveTable"
+                entitySet="Aeroplanes"
+                persistencyKey="SmartTableAeroplane_Explored"
+                showRowCount="true"
+                smartFilterId="idAeroplaneFilterBar"
+                header="{i18n>aircrafts}"
+                class="sapUiResponsiveContentPadding"
+                ignoredFields="rawInput"
+            >
+                <smarttable:customToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            text="Create"
+                            type="Emphasized"
+                            press="onCreateAircraft"
+                        />
+                    </OverflowToolbar>
+                </smarttable:customToolbar>
+            </smarttable:SmartTable>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

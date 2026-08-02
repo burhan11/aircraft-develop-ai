@@ -1,0 +1,7 @@
+ID,locale,name
+AutomaticAllocation,de,Automatische Allokation (CD2_M / WH_M)
+PlanningWithSimulation,de,Planung mit Simulation (CD2_M / WH_M)
+ManualAllocation,de,Manuelle Allokation (CD1_M / CD2_M)
+AutomaticAllocation,en,Automatic Allocation (CD2_M / WH_M)
+PlanningWithSimulation,en,Planning with Simulation (CD2_M / WH_M)
+ManualAllocation,en,Manual Allocation (CD1_M / CD2_M)

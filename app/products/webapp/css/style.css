@@ -1,0 +1,24 @@
+/* Enter your custom styles here */
+.wizardHeaderDisabled .sapMWizardProgressNav {
+  pointer-events: none;
+}
+.wizardHeaderDisabled .sapMWizardStep {
+  cursor: default !important;
+}
+
+.uploadWizardSmartForm .sapUiFormCLContainer {
+  padding: 0rem;
+}
+.uploadWizardSmartForm .sapUiFormCLContent {
+  padding: 1rem 0.75rem;
+}
+.uploadWizardSmartForm .sapUiFormCLWideColumns .sapUiFormCLElement>.sapUiFormCLCellsL4 {
+    width: 17%;
+}
+.uploadWizardSmartForm .sapUiFormCLWideColumns .sapUiFormCLElement>.sapUiFormCLCellsL8 {
+    width: 83%;
+}
+
+.uploadWizardSmartFormSmaller .sapUiFormCLWideColumns .sapUiFormCLElement>.sapUiFormCLCellsL8 {
+    width: 32%;
+}

@@ -1,0 +1,204 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <uxap:ObjectPageSubSection
+        id="planningSubSection"
+        title="Mengen Planung"
+    >
+        <uxap:blocks>
+            <!-- Vertical Layout Container -->
+            <m:VBox width="100%">
+                <!-- Smart Filter Bar Section -->
+                <smartFilterBar:SmartFilterBar
+                    id="planningProductsSmartFilterBar"
+                    entitySet="PlanningProducts"
+                    persistencyKey="PlanningProductsFilterKey"
+                    useToolbar="true"
+                    showFilterConfiguration="true"
+                    showRestoreButton="true"
+                    search=".onSmartFilterBarSearch"
+                    filterChange=".onSmartFilterBarFilterChange"
+                    class="sapUiNoMargin"
+                    liveMode="true"
+                >
+                    <m:ToolbarSpacer />
+                    <!-- Custom toolbar content -->
+
+                    <!-- <m:OverflowToolbar>
+                        <m:ToolbarSpacer />
+                        <m:Button
+                            id="generateDefault"
+                            text="{i18n>planning.generateDefault}"
+                            type="Emphasized"
+                            press=".onGenerateDefaultAmounts"
+                            enabled="{= (${status_ID} === 'InProgress')&amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                        />
+                        <m:Button
+                            id="changeProductSelection"
+                            text="{i18n>planning.changeProductSelection}"
+                            type="Emphasized"
+                            press=".changeProductSelection"
+                            enabled="{= (${status_ID} === 'InProgress' || ${status_ID} === 'CreationFailed')&amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                        />
+                    </m:OverflowToolbar> -->
+                </smartFilterBar:SmartFilterBar>
+                <m:SegmentedButton
+                    id="idPlanningLevelSegBtn"
+                    selectionChange="onPlanningListChange"
+                    class="sapUiTinyMarginTop sapUiSmallMarginBegin"
+                >
+                    <m:items>
+                        <m:SegmentedButtonItem
+                            key="option"
+                            text="{i18n>planning.option.title}"
+                        />
+                        <m:SegmentedButtonItem
+                            key="variant"
+                            text="{i18n>planning.variant.title}"
+                        />
+                    </m:items>
+                </m:SegmentedButton>
+                <m:VBox
+                    id="idPlanningProductsSmartTable"
+                    width="100%"
+                />
+                <!-- Smart Table Section - Connected to Smart Filter Bar -->
+                <!-- <smartTable:SmartTable
+                    id="planningProductsSmartTable"
+                    entitySet="PlanningProducts"
+                    smartFilterId="planningProductsSmartFilterBar"
+                    tableType="Table"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    showRowCount="true"
+                    persistencyKey="PlanningProductsTableKey"
+                    enableAutoBinding="true"
+                    class="sapUiResponsiveContentPadding"
+                    enableAutoColumnWidth="true"
+                    enableCopy="false"
+                    enableExport="false"
+                    editTogglable="{= (${status_ID} === 'InProgress') &amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                    app:useSmartToggle="true"
+                    app:useSmartField="true"
+                    requestAtLeastFields="product/imageUrl,product/isUploaded,index,differingHouseGroups/houseGroup_ID"
+                    changeModelValue="onChangeModelValue"
+                    beforeRebindTable="onBeforeRebindPlanningTable"
+                >
+                    <smartTable:customToolbar>
+                        <m:OverflowToolbar>
+                            <m:ToolbarSpacer />
+                            <m:Button
+                                id="amountChange"
+                                text="{i18n>planning.amountChange}"
+                                type="Transparent"
+                                press="openAmountChangeDialog"
+                                enabled="false"
+                            />
+                            <m:Button
+                                id="deletePlanningProducts"
+                                text="{i18n>delete}"
+                                type="Transparent"
+                                press=".onDeleteSelectedProducts"
+                                enabled="false"
+                            />
+                            <m:Button
+                                id="showBudgetHG"
+                                text=""
+                                type="Transparent"
+                                press=".onShowBudgetHG"
+                                enabled="false"
+                            />
+                        </m:OverflowToolbar>
+                    </smartTable:customToolbar>
+
+                    <t:Table>
+                        <t:columns>
+                            <t:Column id="imageUrl" autoResizable="true" resizable="true"
+                                hAlign="Center" minWidth="80px">
+                                <t:customData>
+                                    <core:CustomData key="p13nData"
+                                        value="{'columnKey': 'product/imageUrl','columnIndex':'2'}" />
+                                </t:customData>
+                                <t:label>
+                                    <m:Label text="{i18n>planning.imageUrl}" />
+                                </t:label>
+                                <t:template>
+                                    <m:VBox justifyContent="Center" alignItems="Center" width="100%"
+                                        height="100%">
+                                        <m:Image src="{product/imageUrl}" width="auto" height="50px"
+                                            decorative="false" alt="Product Image"
+                                            densityAware="false" class="sapUiTinyMargin" />
+                                    </m:VBox>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="differingHouseGroups" autoResizable="true"
+                                resizable="true" minWidth="180px">
+                                <t:customData>
+                                    <core:CustomData key="p13nData"
+                                        value="{'columnKey': 'differingHouseGroups','columnIndex':'16'}" />
+                                </t:customData>
+                                <t:label>
+                                    <m:Label text="{i18n>planning.differingHouseGroups}" />
+                                </t:label>
+                                <t:template>
+                                    <m:MultiComboBox
+                                        items="{/HouseGroups}"
+                                        selectedKeys="{
+                path: 'differingHouseGroups',
+                formatter: '.formatDifferingHouseGroups'
+            }"
+                                        selectionFinish=".onHouseGroupSelectionChange"
+                                        editable="{= ${editState>/editable} === true }"
+                                        enabled="{= ${editState>/editable} === true &amp;&amp; !!${differingSizeKey} }"
+                                    >
+                                        <core:Item key="{ID}" text="{name}" />
+                                    </m:MultiComboBox>
+                                </t:template>
+                            </t:Column>
+                        <t:Column id="houseGroupLabel" autoResizable="true" resizable="true"
+                            hAlign="Center" minWidth="80px">
+                            <t:customData>
+                                <core:CustomData key="p13nData"
+                                    value="{'columnKey': 'houseGroupLabel','columnIndex':'17'}" />
+                            </t:customData>
+                            <t:label>
+                                <m:Label text="" />
+                            </t:label>
+                            <t:template>
+                                <m:VBox justifyContent="Center" alignItems="Center" width="100%"
+                                    height="100%">
+                                    <m:Text text=""/>
+                                </m:VBox>
+                            </t:template>
+                        </t:Column>
+                        <t:Column id="houseGroupOverallAmount" autoResizable="true" resizable="true"
+                            hAlign="Center" minWidth="80px">
+                            <t:customData>
+                                <core:CustomData key="p13nData"
+                                    value="{'columnKey': 'houseGroupOverallAmount','columnIndex':'34'}" />
+                            </t:customData>
+                            <t:label>
+                                <m:Label text="{i18n>budgetKT.total}" />                                
+                            </t:label>
+                            <t:template>
+                                <m:VBox justifyContent="Center" alignItems="Center" width="100%"
+                                    height="100%">
+                                    <m:Text text=""/>
+                                </m:VBox>
+                            </t:template>
+                        </t:Column>
+                        </t:columns>
+                    </t:Table>
+                </smartTable:SmartTable> -->
+            </m:VBox>
+        </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+</core:FragmentDefinition>

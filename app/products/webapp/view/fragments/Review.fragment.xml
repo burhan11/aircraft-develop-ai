@@ -1,0 +1,1597 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:t="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <VBox id="_IDGenVBox3">
+        <f:SimpleForm id="_IDGenSimpleForm11233" editable="true"
+            layout="ResponsiveGridLayout">
+            <Label id="_IDGenLabel12245" text="{i18n>wizard.step1.supplier}"
+            />
+            <Text text="{wizard>/supplierID}"></Text>
+            <Label id="_IDGenLabel1121" text="{i18n>wizard.step1.consumerTopic}"
+            />
+            <Text text="{wizard>/consumerTopicID}"></Text>
+            <Label id="_IDGenLabel31222" text="{i18n>wizard.step1.brand}"
+            />
+            <Text text="{wizard>/brandID}"></Text>
+
+            <Label id="_IDGenLabel1233" text="{i18n>wizard.step1.orderDate}"
+                required="false" />
+            <Text text="{wizard>/writingAppointmentID}"></Text>
+            <Label text="{i18n>massEdit.basic.tbs}" />
+
+
+        </f:SimpleForm>
+
+
+        <Title text="Artikel ({= ${wizard>/UploadedArticlesModified}.length})"></Title>
+        <t:Table
+            rows="{wizard>/UploadedArticlesModified}"
+            selectionMode="None"
+            ariaLabelledBy="title"
+        >
+
+            <t:rowSettingsTemplate>
+                <t:RowSettings
+                    highlight="{= ${wizard>existsIn} === 'SAP' ? 'Success' : ${wizard>existsIn} === 'PRICAT' ?
+            'Success' : 'None'}"
+                    highlightText="{
+                            parts: [
+                                {path: 'i18n>wizard.step2.status.alreadyExists'}, 
+                                {path: 'wizard>existsIn'}
+                            ], 
+                            formatter: 'jQuery.sap.formatMessage'
+                        }" />
+            </t:rowSettingsTemplate>
+            <t:columns>
+
+                <t:Column width="6rem" app:p13nKey="image_col">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.image}" />
+                    </t:label>
+                    <t:template>
+                        <Image src="{wizard>image}" width="50px" height="50px" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Supplier Article Number -->
+                <t:Column width="12rem" app:p13nKey="supplierProductNumber_col"
+                    sortProperty="supplierProductNumber" headerMenu="menu" resizable="true"
+                    filterProperty="supplierProductNumber"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.supplierProductNumber}"
+                            wrapping="false" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>supplierProductNumber}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Supplier Article Name -->
+                <t:Column width="12rem" app:p13nKey="supplierProductName_col"
+                    sortProperty="supplierProductName" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.supplierProductName}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>supplierProductName}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Supplier Color -->
+                <t:Column width="12rem" app:p13nKey="supplierColor_col"
+                    sortProperty="supplierColor" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.supplierColor}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>supplierColor}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Evaluation Color -->
+                <t:Column width="12rem" app:p13nKey="evaluationColor_col"
+                    sortProperty="evaluationColor" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.evaluationColor}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>evaluationColor}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Size Run -->
+                <t:Column width="12rem" app:p13nKey="sizeRun_col" sortProperty="sizeSystem"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text
+                            text="{i18n>wizard.step2.col.sizeRun}" />
+                    </t:label>
+                    <t:template>
+                        <Text wrapping="false" text="{wizard>sizeSystem}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Product Group -->
+                <t:Column width="12rem" app:p13nKey="productGroup_col"
+                    sortProperty="productGroup" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.productGroup}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>productGroup}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Receipt Text -->
+                <t:Column width="12rem" app:p13nKey="receiptText_col"
+                    sortProperty="receiptText" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.receiptText}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>receiptText}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Ownership Status -->
+                <t:Column width="12rem" app:p13nKey="ownershipStatus_col"
+                    sortProperty="ownershipStatus" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.ownershipStatus}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>ownershipStatus}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Currency -->
+                <t:Column width="6rem" app:p13nKey="currency_col" sortProperty="currency"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.currency}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>currency}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Purchase Price Brutto -->
+                <t:Column width="12rem" app:p13nKey="purchasePrice_col" sortProperty="purchasePrice"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.purchasePrice}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>purchasePrice}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Purchase Price Netto -->
+                <t:Column width="12rem" app:p13nKey="purchasePriceNet_col" sortProperty="purchasePriceNet"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.purchasePriceNet}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>purchasePriceNet}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Artikelrabatt1 -->
+                <t:Column width="12rem" app:p13nKey="productDiscount1_col" sortProperty="productDiscount1"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.productDiscount1}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>productDiscount1}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Retail Price-->
+                <t:Column width="12rem" app:p13nKey="retailPrice_col" sortProperty="retailPrice"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <!-- <Text text="{i18n>wizard.step2.col.uvp}" /> -->
+                        <Text text="{i18n>wizard.step2.col.retailPrice}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>retailPrice}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- <t:Column width="12rem" app:p13nKey="retailPrice_col" sortProperty="countryOfProduction"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="Ursprungsland"></Text>
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>countryOfProduction}" />
+                    </t:template>
+                </t:Column> -->
+
+                <!--  Verschiffungshafen -->
+                <!-- <t:Column width="12rem" app:p13nKey="shippingPort_col" sortProperty="shippingPort"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="Versandhafen" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>shippingPort}" />
+                    </t:template>
+                </t:Column> -->
+
+
+                <!-- Transport Chain -->
+                <t:Column width="12rem" app:p13nKey="transportChain_col" sortProperty="transportChain"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.transportChain}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>transportChain}" /> 
+                    </t:template>
+                </t:Column>
+
+                <!--  Produktionsstätte -->
+                <t:Column width="14rem" app:p13nKey="productionPlant_col"
+                    sortProperty="productionPlant" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.productionPlant}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>productionPlant}" />
+                    </t:template>
+                </t:Column>
+
+                <!--  ETA DC LT VZ -->
+                <t:Column width="12rem" app:p13nKey="deliveryDateVZ_col" sortProperty="deliveryDateVZ"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.deliveryDateVZ}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>deliveryDateVZ}" />
+                    </t:template>
+                </t:Column>
+
+                <!--  Lieferbar ab -->
+                <t:Column width="12rem" app:p13nKey="availableFrom_col" sortProperty="availableFrom"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.availableFrom}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>availableFrom}" />
+                    </t:template>
+                </t:Column>
+
+                <!--  Lieferbar bis -->
+                <t:Column width="12rem" app:p13nKey="availableUntil_col" sortProperty="availableUntil"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.availableUntil}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>availableUntil}" />
+                    </t:template>
+                </t:Column>
+
+                <!--  Ende Lebenszyklus -->
+                <t:Column width="12rem" app:p13nKey="endOfLifeCycle_col" sortProperty="endOfLifeCycle"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.endOfLife}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>endOfLifeCycle}" />
+                    </t:template>
+                </t:Column>
+
+                <!--  Hausgruppe -->
+                <t:Column width="12rem" app:p13nKey="houseGroup_col" sortProperty="houseGroup"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.houseGroup}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>houseGroup}" />
+                    </t:template>
+                </t:Column>
+
+
+                <!-- <t:Column width="12rem" app:p13nKey="retailPrice_col" sortProperty="uvpPrice"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="Betriebsstätte VZ"></Text>
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>uvpPrice}" />
+                    </t:template>
+                </t:Column> -->
+
+
+                <!-- Supply Type -->
+                <t:Column width="12rem" app:p13nKey="supplyType_col" sortProperty="supplyType"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.supplyType}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>supplyType}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Saison Type -->
+                <t:Column width="12rem" app:p13nKey="seasonType_col" sortProperty="seasonType"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.seasonType}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>seasonType}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Saison Year -->
+                <t:Column width="12rem" app:p13nKey="seasonYear_col" sortProperty="seasonYear"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.seasonYear}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>seasonYear}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Präsentationsart -->
+                <t:Column width="12rem" app:p13nKey="presentationType_col" sortProperty="presentationType"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.presentationType}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>presentationType}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- GTIN -->
+                <t:Column width="12rem" app:p13nKey="gtin_col" sortProperty="GTIN"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.gtin}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>GTIN}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Online -->
+                <t:Column width="10rem" app:p13nKey="isOnline_col" sortProperty="isOnline"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.isOnline}" />
+                    </t:label>
+                    <t:template>
+                        <Text
+                            text="{= ${wizard>isOnline} ? 'Ja' : 'Nein' }" />
+                    </t:template>
+                </t:Column>
+
+
+                <!-- Meta -->
+                <!-- <t:Column width="16rem" app:p13nKey="imageUrl_col" sortProperty="imageUrl"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="Bild URL" />
+                    </t:label>
+                    <t:template>
+                        <Link text="{wizard>imageUrl}" href="{wizard>imageUrl}" target="_blank" />
+                    </t:template>
+                </t:Column> -->
+                <!-- <t:Column width="16rem" app:p13nKey="statusText_col" sortProperty="statusText"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="Status" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>statusText}" />
+                    </t:template>
+                </t:Column> -->
+                <!-- <t:Column width="12rem" app:p13nKey="mimeType_col" sortProperty="mimeType"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="MIME-Typ" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>mimeType}" />
+                    </t:template>
+                </t:Column> -->
+
+                <!-- Material Columns -->
+                <t:Column width="12rem" app:p13nKey="material1_col" sortProperty="material1"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material1Code}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>material1}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material1Portion_col" sortProperty="portion1"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material1Portion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>portion1}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material2_col" sortProperty="material2"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material2Code}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>material2}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material2Portion_col" sortProperty="portion2"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material2Portion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>portion2}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material3_col" sortProperty="material3"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material3Code}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>material3}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material3Portion_col" sortProperty="portion3"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material3Portion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>portion3}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material4_col" sortProperty="material4"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material4Code}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>material4}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material4Portion_col" sortProperty="portion4"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material4Portion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>portion4}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material5_col" sortProperty="material5"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material5Code}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>material5}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="material5Portion_col" sortProperty="portion5"
+                    headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.material5Portion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>portion5}" />
+                    </t:template>
+                </t:Column>
+
+
+                <!-- Sustainability -->
+                <t:Column width="16rem" app:p13nKey="sustainabilitySealOfApproval_col"
+                    sortProperty="sustainabilitySealOfApproval" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.sustainabilitySealOfApproval}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>sustainabilitySealOfApproval}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="sustainabilityCertifier_col"
+                    sortProperty="sustainabilityCertifier" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.sustainabilityCertifier}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>sustainabilityCertifier}" />
+                    </t:template>
+                </t:Column>
+
+                <t:Column width="12rem" app:p13nKey="sustainabilityCertificateNumber_col"
+                    sortProperty="sustainabilityCertificateNumber" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.sustainabilityCertificateNumber}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>sustainabilityCertificateNumber}" />
+                    </t:template>
+                </t:Column>
+
+                <t:Column width="16rem" app:p13nKey="sustainabilityMaterial_col"
+                    sortProperty="sustainabilityMaterial" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.sustainabilityMaterial}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>sustainabilityMaterial}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="12rem" app:p13nKey="sustainabilityPortion_col"
+                    sortProperty="sustainabilityPortion" headerMenu="menu" resizable="true"
+                    autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.sustainabilityPortion}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>sustainabilityPortion}" />
+                    </t:template>
+                </t:Column>
+
+                <!-- Care -->
+                <t:Column width="10rem" app:p13nKey="washing_col" sortProperty="washing"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.washing}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>washing}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="bleaching_col" sortProperty="bleaching"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.bleaching}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>bleaching}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="ironing_col" sortProperty="ironing"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.ironing}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>ironing}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="cleaning_col" sortProperty="cleaning"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.cleaning}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>cleaning}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="drying_col" sortProperty="drying"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.drying}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>drying}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="washingInstructions_col" sortProperty="washingInstructions"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.washingInstructions}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>washingInstructions}" />
+                    </t:template>
+                </t:Column>
+
+                <t:Column width="10rem" app:p13nKey="comment_col" sortProperty="comment"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.comment}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>comment}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" app:p13nKey="comment2_col" sortProperty="comment2"
+                    headerMenu="menu" resizable="true" autoResizable="true">
+                    <t:label>
+                        <Text text="{i18n>wizard.step2.col.comment2}" />
+                    </t:label>
+                    <t:template>
+                        <Text text="{wizard>comment2}" />
+                    </t:template>
+                </t:Column>
+
+            </t:columns>
+
+        </t:Table>
+        <f:SimpleForm
+            editable="false"
+            layout="ResponsiveGridLayout"
+            singleContainerFullSize="true"
+            title="{i18n>massEdit.basic.title}"
+            visible="{cache>/sections/basic}"
+        >   
+            <Label text="{i18n>massEdit.basic.tbs}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/topicComponent_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.basic.tbs}" />
+                    <core:CustomData key="entitySet" value="/TopicComponents" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.basic.sbs}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/assortmentModule_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.basic.sbs}" />
+                    <core:CustomData key="entitySet" value="/AssortmentModules" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.basic.productGroup}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/productGroup_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.basic.productGroup}" />
+                    <core:CustomData key="entitySet" value="/ProductGroups" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.basic.targetGroup}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/targetGroup_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.basic.targetGroup}" />
+                    <core:CustomData key="entitySet" value="/TargetGroups" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.basic.module}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/module_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.basic.module}" />
+                    <core:CustomData key="entitySet" value="/Modules" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.houseGroup}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/houseGroup_ID}" items="{/HouseGroups}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.basic.baseUnitOfMeasure}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/baseUnitOfMeasure_ID}"
+                items="{/BaseUnitOfMeasures}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+        </f:SimpleForm>
+
+        <!-- IDENTIFICATION -->
+        <f:SimpleForm
+            editable="true"
+            layout="ResponsiveGridLayout"
+            singleContainerFullSize="true"
+            title="{i18n>massEdit.identification.title}"
+            visible="{cache>/sections/identification}"
+        >
+            <!-- <Label text="{i18n>massEdit.identification.supplierProductNumber}" />
+            <Input value="{cache>/tmpProduct/supplierProductNumber}" />
+
+            <Label text="{i18n>massEdit.identification.supplierProductNumberVariant}" />
+            <Input value="{cache>/tmpProduct/supplierProductNumberVariant}" /> -->
+
+            <!-- <Label text="{i18n>massEdit.identification.productText}" />
+            <Input value="{cache>/tmpProduct/productText}" />
+
+            <Label text="{i18n>massEdit.identification.supplierProductName}" />
+            <Input value="{cache>/tmpProduct/supplierProductName}" /> -->
+
+            <Label text="{i18n>massEdit.identification.receiptText}" />
+            <Input value="{cache>/tmpProduct/receiptText}" editable="false" />
+
+            <!-- <Label text="{i18n>massEdit.identification.supplierColor}" />
+            <Input value="{cache>/tmpProduct/supplierColor}" /> -->
+
+            <Label text="{i18n>massEdit.identification.evaluationColor}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/evaluationColor_ID}" change="onComboBoxChange"
+                editable="false"
+                items="{/EvaluationColors}">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.identification.sizeSystem}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/sizeSystem_ID}" items="{/SizeSystems}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{ID}" />
+            </ComboBox>
+
+            <!-- <Label text="{i18n>massEdit.identification.size1}" />
+            <Input
+                value="{cache>/tmpProduct/size1_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.identification.size1}" />
+                    <core:CustomData key="entitySet" value="/Sizes" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.identification.size2}" />
+            <Input
+                value="{cache>/tmpProduct/size2_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.identification.size2}" />
+                    <core:CustomData key="entitySet" value="/Sizes" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input> -->
+
+
+            <!-- <Label text="{i18n>massEdit.identification.sizeRun}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/sizeRun_ID}" items="{/SizeSystems}">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox> -->
+            <!-- 
+            <Label text="{i18n>massEdit.identification.gtin}" />
+            <Input value="{cache>/tmpProduct/GTIN}" /> -->
+
+            <!-- <Label text="{i18n>massEdit.identification.supplyType}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/supplyType_SUPPLY_TYPE}"
+                items="{/SupplyTypes}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{SUPPLY_TYPE}" text="{DESCRIPTION}" />
+            </ComboBox> -->
+
+            <Label text="{i18n>massEdit.identification.seasonType}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/seasonType_ID}" items="{/SeasonTypes}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.identification.seasonYear}" />
+            <Input value="{cache>/tmpProduct/seasonYear}" editable="false" />
+
+            <Label text="{i18n>massEdit.identification.presentationType}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/presentationType_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.identification.presentationType}" />
+                    <core:CustomData key="entitySet" value="/PresentationTypes" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.identification.availableFrom}" />
+            <DatePicker editable="false"
+                value="{path: 'cache>/tmpProduct/availableFrom', type: 'sap.ui.model.type.Date' , formatOptions: {UTC: true}}" />
+
+            <Label text="{i18n>massEdit.identification.availableUntil}" />
+            <DatePicker editable="false"
+                value="{path: 'cache>/tmpProduct/availableUntil', type: 'sap.ui.model.type.Date' , formatOptions: {UTC: true}}" />
+
+            <Label text="{i18n>massEdit.identification.endOfLifeCycle}" />
+            <DatePicker editable="false"
+                value="{path: 'cache>/tmpProduct/endOfLifeCycle', type: 'sap.ui.model.type.Date'}" />
+        </f:SimpleForm>
+        <f:SimpleForm
+            editable="false"
+            layout="ResponsiveGridLayout"
+            singleContainerFullSize="true"
+            title="{i18n>massEdit.purchase.title}"
+            visible="{cache>/sections/purchase}"
+        >
+            <Label
+                text="{i18n>massEdit.classification.pricatCatalog}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/pricatCatalog_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.classification.pricatCatalog}" />
+                    <core:CustomData key="entitySet" value="/PricatCatalogs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="ID" />
+                </customData>
+            </Input>
+
+
+            <!-- <ComboBox selectedKey="{cache>/tmpProduct/pricatCatalog_ID}"
+            items="{/PricatCatalogs}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{ID}" />
+            </ComboBox> -->
+
+
+            <!-- <Label
+                text="{i18n>massEdit.classification.ownershipStatus}" />
+            <ComboBox
+                selectedKey="{cache>/tmpProduct/ownershipStatus_ID}" change="onComboBoxChange"
+                editable="false"
+                items="{/OwnershipStatus}">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox> -->
+
+            <Label text="{i18n>massEdit.additional.purchaseOrderText}" />
+            <TextArea value="{cache>/tmpProduct/purchaseOrderText}" rows="3" editable="false" />
+
+
+        </f:SimpleForm>
+        <f:SimpleForm
+            editable="false"
+            layout="ResponsiveGridLayout"
+            singleContainerFullSize="true"
+            title="{i18n>massEdit.sales.title}"
+            visible="{cache>/sections/sales}"
+        >
+
+            <Label text="{i18n>massEdit.additional.merchandiseSecurityMethod}" />
+            <Input
+                value="{cache>/tmpProduct/merchandiseSecurityMethod_ID}"
+                editable="false"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.merchandiseSecurityMethod}" />
+                    <core:CustomData key="entitySet" value="/MerchandiseSecurityMethods" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.priceLabelMethod}" />
+            <Input
+                value="{cache>/tmpProduct/priceLabelMethod_ID}" editable="false"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.priceLabelMethod}" />
+                    <core:CustomData key="entitySet" value="/PriceLabelMethods" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.hangerMethod}" />
+            <Input
+                value="{cache>/tmpProduct/hangerMethod_ID}" editable="false"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.hangerMethod}" />
+                    <core:CustomData key="entitySet" value="/HangerMethods" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+
+
+
+
+
+
+
+            <!-- GPOPT-1195 
+            <Label text="{i18n>massEdit.additional.dispositionFeature}" />
+            <Input value="{cache>/tmpProduct/dispositionFeature}" editable="false" />
+            -->
+
+            <!-- <ComboBox selectedKey="{cache>/tmpProduct/pricatCatalog_ID}"
+            items="{/PricatCatalogs}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{ID}" />
+            </ComboBox> -->
+
+            <!-- <Label text="{i18n>massEdit.classification.gridBox}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/gridBox_ID}" items="{/NineGridBoxes}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.classification.omnichannel}" />
+            <Input
+                value="{cache>/tmpProduct/omnichannel_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.classification.omnichannel}" />
+                    <core:CustomData key="entitySet" value="/Omnichannels" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input> -->
+
+        </f:SimpleForm>
+        <f:SimpleForm
+            editable="false"
+            layout="ResponsiveGridLayout"
+            singleContainerFullSize="true"
+            title="{i18n>massEdit.classification.title}"
+            visible="{cache>/sections/classification}"
+        >
+            <Label
+                text="{i18n>massEdit.classification.productType}" />
+            <ComboBox editable="false"
+                selectedKey="{cache>/tmpProduct/productType_ID}" items="{/ProductTypes}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+
+            <Label text="{i18n>massEdit.classification.gridBox}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/gridBox_ID}" items="{/NineGridBoxes}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.classification.omnichannel}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/omnichannel_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.classification.omnichannel}" />
+                    <core:CustomData key="entitySet" value="/Omnichannels" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.series}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/series_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.series}" />
+                    <core:CustomData key="entitySet" value="/Series" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="ID" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.license}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/license_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.license}" />
+                    <core:CustomData key="entitySet" value="/Licenses" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.program}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/program_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.program}" />
+                    <core:CustomData key="entitySet" value="/Programs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.additional.occasion}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/occasion_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.occasion}" />
+                    <core:CustomData key="entitySet" value="/Occasions" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.property}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/property_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.property}" />
+                    <core:CustomData key="entitySet" value="/Properties" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.quality}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/quality_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.quality}" />
+                    <core:CustomData key="entitySet" value="/Qualities" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.pattern}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/pattern_ID}" items="{/Patterns}"
+                editable="false"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{NAME}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.additional.specialProduct}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/specialProduct_ID}" items="{/SpecialProducts}"
+                editable="false"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{NAME}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.additional.surfaceWashing}" />
+            <Input
+                value="{cache>/tmpProduct/surfaceWashing_CODE}"
+                editable="false"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.additional.surfaceWashing}" />
+                    <core:CustomData key="entitySet" value="/SurfaceWashings" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.mainForm}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/mainForm_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.additional.mainForm}" />
+                    <core:CustomData key="entitySet" value="/MainForms" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.stockingThickness}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/stockingThickness_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.additional.stockingThickness}" />
+                    <core:CustomData key="entitySet" value="/StockingThickness" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.additional.basicDataText}" />
+            <TextArea value="{cache>/tmpProduct/basicDataText}" rows="3" editable="false" />
+
+            <!-- <ComboBox selectedKey="{cache>/tmpProduct/pricatCatalog_ID}"
+            items="{/PricatCatalogs}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{ID}" />
+            </ComboBox> -->
+
+
+            <!-- <Label text="{i18n>massEdit.classification.gridBox}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/gridBox_ID}" items="{/NineGridBoxes}"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.classification.omnichannel}" />
+            <Input
+                value="{cache>/tmpProduct/omnichannel_CODE}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle"
+                        value="{i18n>massEdit.classification.omnichannel}" />
+                    <core:CustomData key="entitySet" value="/Omnichannels" />
+                    <core:CustomData key="titleKey" value="CODE" />
+                    <core:CustomData key="descKey" value="DESCRIPTION" />
+                </customData>
+            </Input> -->
+
+        </f:SimpleForm>
+
+        <!-- OTHER -->
+        <f:SimpleForm
+            visible="{cache>/sections/logistics}"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            title="{i18n>massEdit.delivery.title}"
+            labelSpanXL="4"
+            labelSpanL="3"
+            labelSpanM="4"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="4"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false"
+        >
+
+
+            <Label text="{i18n>massEdit.other.shippingInstruction}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/shippingInstruction_ID}"
+                change="onComboBoxChange"
+                items="{/ShippingInstructions}" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+
+            <Label text="{i18n>massEdit.additional.loadingGroup}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/loadingGroup_ID}" items="{/LoadingGroups}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.other.transportChain}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/transportChain_TC_ID}" items="{/TransportChains}"
+                change="onComboBoxChange" editable="false">
+                <core:Item key="{TC_ID}" text="{TC_NAME}" />
+            </ComboBox>
+
+            <!-- <Label text="{i18n>massEdit.other.productionPlant}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/productionPlant_PRODUCTIONPLANT}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.other.productionPlant}" />
+                    <core:CustomData key="entitySet" value="/ProductionPlants" />
+                    <core:CustomData key="titleKey" value="PRODUCTIONPLANT" />
+                    <core:CustomData key="descKey" value="NAME1" />
+                </customData>
+            </Input> -->
+
+            <Label text="{i18n>StorageLocation}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/storageLocation_LGORT}"
+                change="onComboBoxChange"
+                items="{/StorageLocations}" editable="false">
+                <core:Item key="{LGORT}" text="{LGORT}" />
+            </ComboBox>
+
+            <Label text="{i18n>massEdit.other.differingIncoTerm}" />
+            <ComboBox selectedKey="{cache>/tmpProduct/differingIncoTerm_ID}" items="{/IncoTerms}"
+                editable="false"
+                change="onComboBoxChange">
+                <core:Item key="{ID}" text="{name}" />
+            </ComboBox>
+
+
+        </f:SimpleForm>
+
+        <!-- LABELS -->
+        <f:SimpleForm
+            visible="{cache>/sections/labels}"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            title="{i18n>massEdit.labels.title}"
+            labelSpanXL="4"
+            labelSpanL="3"
+            labelSpanM="4"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="4"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="2"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false"
+        >
+            <Label text="{i18n>massEdit.labels.mainLabel}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/mainLabel_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.mainLabel}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.labels.subLabel}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/subLabel_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.subLabel}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.labels.sizeLabel}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/sizeLabel_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.sizeLabel}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.labels.sizeCode}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/sizeCode_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.sizeCode}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.labels.hangTag}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/hangTag_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.hangTag}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.labels.stringWithSeal}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/stringWithSeal_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.stringWithSeal}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+
+            <Label text="{i18n>massEdit.labels.priceSticker}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/priceSticker_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.priceSticker}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.labels.careLabel}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/careLabel_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.careLabel}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+
+            <Label text="{i18n>massEdit.labels.addHangTag}" />
+            <Input
+                editable="false"
+                value="{cache>/tmpProduct/addHangTag_ID}"
+                showValueHelp="true"
+                valueHelpRequest=".onGenericValueHelpRequest"
+                showSuggestion="true"
+                suggest=".onGenericSuggest"
+                suggestionItemSelected=".onGenericSuggestionItemSelected"
+            >
+                <customData>
+                    <core:CustomData key="dialogTitle" value="{i18n>massEdit.labels.addHangTag}" />
+                    <core:CustomData key="entitySet" value="/VKHMs" />
+                    <core:CustomData key="titleKey" value="ID" />
+                    <core:CustomData key="descKey" value="NAME" />
+                </customData>
+            </Input>
+        </f:SimpleForm>
+    </VBox>
+
+</core:FragmentDefinition>

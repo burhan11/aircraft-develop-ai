@@ -1,0 +1,79 @@
+<mvc:View xmlns:uxap="sap.uxap" xmlns:smarttable="sap.ui.comp.smarttable" xmlns:f="sap.f"
+    controllerName="com.valantic.preorder.checkandapprove.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <f:DynamicPage>
+        <f:header>
+            <f:DynamicPageHeader>
+                <smartfilterbar:SmartFilterBar
+                    id="smartFilterBarProducts"
+                    entitySet="CombinedDataView"
+                    persistencyKey="SmartFilter_Planning"
+                    enableBasicSearch="false"
+                    liveMode="true"
+                >
+                    <smartfilterbar:controlConfiguration>
+                        <smartfilterbar:ControlConfiguration key="CompanyCode"
+                            index="1"
+                            label="{i18n>type}">
+                            <smartfilterbar:customControl>
+                                <Select id="customSelect">
+                                    <items>
+                                        <core:Item key="Alle" text="Alle" />
+                                        <core:Item key="Artikel" text="Artikel" />
+                                        <core:Item key="Option" text="Option" />
+                                        <core:Item key="Variante" text="Variante" />
+                                        <core:Item key="Auftrag" text="Auftrag" />
+                                    </items>
+                                </Select>
+                            </smartfilterbar:customControl>
+                        </smartfilterbar:ControlConfiguration>
+                    </smartfilterbar:controlConfiguration>
+
+                    <smartfilterbar:layoutData>
+                        <FlexItemData shrinkFactor="0" />
+                    </smartfilterbar:layoutData>
+                </smartfilterbar:SmartFilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <smarttable:SmartTable
+                id="smartTable"
+                entitySet="CombinedDataView"
+                tableType="ResponsiveTable"
+                header="{i18n>writingappointmentsandproducts}"
+                enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+                initiallyVisibleFields=""
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                persistencyKey="SmartTable_Planning"
+                requestAtLeastFields="ID"
+                showRowCount="true"
+                beforeRebindTable="onBeforeRebindTable"
+                smartFilterId="smartFilterBarProducts"
+                enableCopy="false"
+            >
+                <smarttable:customToolbar>
+                    <OverflowToolbar design="Transparent">
+                        <ToolbarSpacer />
+
+                        <Button type="Transparent" text="{i18n>approve}"
+                            press="onApprovePress" id="approveBtn"
+                            enabled="false" />
+
+                    </OverflowToolbar>
+                </smarttable:customToolbar>
+
+                <Table mode="MultiSelect" id="lineItemsTable" selectionChange="onSelectionChange">
+                    <items>
+                        <ColumnListItem type="Navigation"
+                            press="onItemPress"></ColumnListItem>
+                    </items>
+                </Table>
+            </smarttable:SmartTable>
+        </f:content>
+    </f:DynamicPage>
+
+
+</mvc:View>

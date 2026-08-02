@@ -1,0 +1,8 @@
+LGORT,LGOBE,RANK
+0001,Main Warehouse,1
+0002,Secondary Warehouse,1
+0003,Overflow Warehouse,1
+1001,CD1 Storage Location,1
+1002,CD2 Storage Location,1
+1005,Action Storage Location,1
+1000,Warehouse Storage Location,1

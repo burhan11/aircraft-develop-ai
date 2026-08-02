@@ -1,0 +1,13 @@
+supplyType_SUPPLY_TYPE,ownershipStatus_ID,isAction,documentType_BSART,itemCategory_PSTYP
+CD1_M,0,true,ZAK,0
+CD2_M,0,true,ZAK,0
+WH_M,0,true,ZAK,0
+CD1_M,1,true,ZAKO,2
+CD2_M,1,true,ZAKO,2
+WH_M,1,true,ZAKO,2
+CD1_M,1,false,ZKO,2
+CD2_M,1,false,ZKO,2
+WH_M,1,false,ZKO,2
+CD1_M,0,false,ZNB,0
+CD2_M,0,false,ZNB,0
+WH_M,0,false,ZNB,0

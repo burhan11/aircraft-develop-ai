@@ -1,0 +1,90 @@
+{
+  "name": "pre_order",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1037.0",
+    "@aws-sdk/s3-request-presigner": "^3.1037.0",
+    "@cap-js-community/odata-v2-adapter": "^1.15.10",
+    "@cap-js/hana": "^2.7.1",
+    "@sap-cloud-sdk/connectivity": "^4.6.0",
+    "@sap-cloud-sdk/http-client": "^4.6.0",
+    "@sap-cloud-sdk/resilience": "^4.6.0",
+    "@sap/cds": "^9.9.0",
+    "@sap/hana-client": "^2.28.20",
+    "@sap/xssec": "^4.13.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@cap-js/cds-typer": ">=0.38.0",
+    "@cap-js/cds-types": "^0.16.0",
+    "@cap-js/sqlite": "^2.2.1",
+    "@sap/cds-dk": "^9.9.0",
+    "@sap/ux-specification": "^1.144.1",
+    "@types/node": "^25.6.0",
+    "@types/openui5": "^1.147.0",
+    "cds-plugin-ui5": "^0.17.0",
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds-tsx w",
+    "watch-products": "cds watch --open com.valantic.preorder.products/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-aircrafts": "cds watch --open com.valantic.aircrafts/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  },
+  "cds": {
+    "fiori": {
+      "bypass_draft": true
+    },
+    "requires": {
+      "[development]": {},
+      "html5-repo": true,
+      "destinations": true,
+      "workzone": true,
+      "API_PREORDER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_PREORDER",
+        "csrf": true,
+        "csrfInBatch": true,
+        "[hybrid]": {
+          "credentials": {
+            "url": "http://I31_SAP_ECC.dest",
+            "path": "/sap/opu/odata/sap/ZPO_PREORDER_API_SRV;v=1",
+            "proxyConfiguration": {
+              "host": "127.0.0.1",
+              "port": 8887,
+              "protocol": "http"
+            }
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "I31_SAP_ECC",
+            "path": "/sap/opu/odata/sap/ZPO_PREORDER_API_SRV;v=1"
+          }
+        }
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    },
+    "server": {
+      "body_parser": {
+        "limit": "100mb"
+      }
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/consumertopicbrand"
+  ]
+}

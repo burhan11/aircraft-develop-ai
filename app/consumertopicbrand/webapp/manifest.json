@@ -1,0 +1,171 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.valantic.preorder.consumertopicbrand",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.3"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.17.4",
+      "toolsId": "221de434-fc0c-409b-938c-34758e0aa7f3"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/consumer-topic-brand/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "SupplierConsumerTopicBrands": {
+          "semanticObject": "SupplierConsumerTopicBrand",
+          "action": "display",
+          "icon": "sap-icon://customer-order-entry",
+          "title": "{{appTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "_version": "1.2.0",
+    "public": true,
+    "service": "com.valantic.preorder"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.fe": {
+    "app": {
+      "hideDraft": {
+        "enabled": true
+      }
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "SupplierConsumerTopicBrandsList",
+          "target": "SupplierConsumerTopicBrandsList"
+        },
+        {
+          "pattern": "SupplierConsumerTopicBrands({key}):?query:",
+          "name": "SupplierConsumerTopicBrandsObjectPage",
+          "target": "SupplierConsumerTopicBrandsObjectPage"
+        }
+      ],
+      "targets": {
+        "SupplierConsumerTopicBrandsList": {
+          "type": "Component",
+          "id": "SupplierConsumerTopicBrandsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/SupplierConsumerTopicBrands",
+              "enhanceI18n": "i18n/i18n.properties",
+              "variantManagement": "Page",
+              "navigation": {
+                "SupplierConsumerTopicBrands": {
+                  "detail": {
+                    "route": "SupplierConsumerTopicBrandsObjectPage"
+                  }
+                }
+              },
+              "initialLoad": true,
+              "liveMode": true,
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "SupplierConsumerTopicBrandsObjectPage": {
+          "type": "Component",
+          "id": "SupplierConsumerTopicBrandsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "enhanceI18n": "i18n/i18n.properties",
+              "editableHeaderContent": false,
+              "contextPath": "/SupplierConsumerTopicBrands"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

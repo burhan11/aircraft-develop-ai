@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="addSizeDialog"
+        title="{i18n>massEdit.sizes.newTitle}">
+        <content>
+            <f:SimpleForm
+                id="sizeForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                binding="{viewModel>/productDetails/newSizeData}">
+                <f:content>
+                    <Label text="{i18n>massEdit.identification.size1}" />
+                        <Input
+                            selectedKey="{viewModel>size_1_CODE}"
+                            showValueHelp="true"
+                            valueHelpRequest=".onGenericValueHelpRequest"
+                            showSuggestion="true"
+                            suggest=".onGenericSuggest"
+                            suggestionItemSelected=".onGenericSuggestionItemSelected"
+                        >
+                            <customData>
+                                <core:CustomData key="dialogTitle" value="{i18n>massEdit.identification.size1}" />
+                                <core:CustomData key="entitySet" value="/Sizes" />
+                                <core:CustomData key="titleKey" value="CODE" />
+                                <core:CustomData key="descKey" value="DESCRIPTION" />
+                                <core:CustomData key="sortBy" value="SRTPO" />
+                            </customData>
+                        </Input> 
+                    <Label text="{i18n>massEdit.identification.size2}" />
+                    <Input
+                            selectedKey="{viewModel>size_2_CODE}"
+                            showValueHelp="true"
+                            valueHelpRequest=".onGenericValueHelpRequest"
+                            showSuggestion="true"
+                            suggest=".onGenericSuggest"
+                            suggestionItemSelected=".onGenericSuggestionItemSelected"
+                        >
+                            <customData>
+                                <core:CustomData key="dialogTitle" value="{i18n>massEdit.identification.size2}" />
+                                <core:CustomData key="entitySet" value="/Sizes" />
+                                <core:CustomData key="titleKey" value="CODE" />
+                                <core:CustomData key="descKey" value="DESCRIPTION" />
+                                <core:CustomData key="sortBy" value="SRTPO" />
+                            </customData>
+                        </Input> 
+
+                    <Label text="{i18n>massEdit.sizes.gtin}" />
+                    <Input
+                        required="true"
+                        change="handleValidation"
+                        value="{viewModel>GTIN}"
+                        width="100%" />
+
+
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="{i18n>okay}" type="Emphasized" press=".onSaveSize" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancel}" press=".onDialogCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

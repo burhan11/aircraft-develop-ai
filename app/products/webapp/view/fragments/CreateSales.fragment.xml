@@ -1,0 +1,73 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="addSalesDialog"
+        title="{i18n>massEdit.sales.newTitle}">
+        <content>
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                id="salesForm"
+                binding="{viewModel>/productDetails/newSalesData}">
+                <f:content>
+                    <Label text="{i18n>massEdit.sales.colValidFrom}" />
+                    <DatePicker
+                        value="{path: 'viewModel>validFrom', type: 'sap.ui.model.type.Date' , formatOptions: {UTC: true}}"
+                        required="true"
+                        change="handleValidation"
+                        width="100%" />
+
+                    <Label text="{i18n>massEdit.sales.colValidTo}" />
+                    <DatePicker
+                        value="{path: 'viewModel>validTo', type: 'sap.ui.model.type.Date' , formatOptions: {UTC: true}}"
+                        required="true"
+                        change="handleValidation"
+                        width="100%" />
+
+
+                    <Label text="{i18n>massEdit.sales.colRetailPrice}" />
+                    <Input
+                        required="true"
+                        change="handleValidation"
+                        value="{viewModel>retailPrice}"
+                        type="Number"
+                        width="100%" />
+                    <Label text="{i18n>massEdit.sales.colCurrentPrice}" />
+                    <Input
+                        required="true"
+                        change="handleValidation"
+                        value="{viewModel>currentPrice}"
+                        type="Number"
+                        width="100%" />
+
+                    <Label text="{i18n>massEdit.sales.colUvpType}" />
+                    <ComboBox
+                        required="false"
+                        selectedKey="{viewModel>uvpType_ID}"
+                        items="{/UVPTypes}"
+                        change="handleValidation"
+                        width="100%">
+                        <core:Item key="{ID}" text="{ID} ({name})" />
+                    </ComboBox>
+                    <Label text="{i18n>massEdit.sales.colUvpPrice}" />
+                    <Input
+                        required="true"
+                        change="handleValidation"
+                        value="{viewModel>uvpPrice}"
+                        type="Number"
+                        width="100%" />
+
+
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="{i18n>okay}" type="Emphasized" press=".onSaveSales" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancel}" press=".onDialogCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

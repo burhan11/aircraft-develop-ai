@@ -1,0 +1,12 @@
+{
+  "scopes": [],
+  "attributes": [
+    {
+      "name": "groups",
+      "description": "Groups from Entra ID",
+      "valueType": "s"
+    }
+  ],
+  "role-templates": [],
+  "authorities-inheritance": false
+}

@@ -1,0 +1,93 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:t="sap.ui.table"
+>
+    <smartTable:SmartTable
+        id="variantTableOpt"
+        entitySet="ProductSizesTable"
+        visible="{= ${oModelVisible>/showVariant} === true }"
+        enableAutoBinding="true"
+        tableType="Table"
+        header="{i18n>list.variant.title}"
+        class="sapUiResponsiveContentPadding"
+        smartFilterId="smartFilterBar"
+        enableExport="true"
+        beforeExport="onBeforeExport"
+        useVariantManagement="true"
+        useTablePersonalisation="true"
+        uiStateChange=""
+        showRowCount="true"
+        persistencyKey="SmartTableRefVar_Explored"
+        requestAtLeastFields="ID,imageUrl,isUploaded,supplierColor,createdAt"
+        showFullScreenButton="true"
+        initiallyVisibleFields="createdAt"
+        beforeRebindTable="onBeforeVariantRebindTable"
+        initialise=""
+        editable="false"
+        enableAutoColumnWidth="true"
+        enableCopy="false"
+        app:preserveDecimals="false"
+    >
+        <smartTable:layoutData>
+            <FlexItemData
+                growFactor="1"
+                baseSize="0%"
+            />
+        </smartTable:layoutData>
+
+        <smartTable:customData>
+            <core:CustomData
+                key="p13nDialogSettings"
+                value="{'columns':{'visible':true}}"
+            />
+        </smartTable:customData>
+        <!-- Add the inner table with custom columns -->
+        <t:Table
+            id="lineItemsTableVar"
+            rowMode="Auto"
+            selectionMode="Single"
+        >
+            <t:columns>
+                <t:Column
+                    id="imageUrlVar"
+                    autoResizable="true"
+                    resizable="true"
+                    hAlign="Center"
+                    minWidth="80px"
+                >
+                    <t:customData>
+                        <core:CustomData
+                            key="p13nData"
+                            value="{'columnKey': 'imageUrl','columnIndex':'0'}"
+                        />
+                    </t:customData>
+                    <t:label>
+                        <Label text="{i18n>product.image}" />
+                    </t:label>
+                    <t:template>
+                        <VBox
+                            justifyContent="Center"
+                            alignItems="Center"
+                            width="100%"
+                            height="100%"
+                        >
+                            <Image
+                                src="{imageUrl}"
+                                width="auto"
+                                height="50px"
+                                visible="{= ${imageUrl} ? true : false }"
+                                decorative="false"
+                                alt="Product Image"
+                                densityAware="false"
+                                class="sapUiTinyMargin"
+                            />
+                        </VBox>
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+    </smartTable:SmartTable>
+</core:FragmentDefinition>

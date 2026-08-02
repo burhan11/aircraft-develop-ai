@@ -1,0 +1,15 @@
+supplyType_SUPPLY_TYPE,isAction,storageLocation_LGORT
+CD1_A,false,1001
+CD2_A,false,1002
+WH_A,false,1100
+CD2_M,false,1002
+WH_M,false,1100
+CD1_M,false,1001
+VMI,false,1001
+WH_M,true,1005
+CD1_A,true,1001
+CD2_A,true,1002
+WH_A,true,1100
+CD2_M,true,1002
+CD1_M,true,1001
+VMI,true,1001

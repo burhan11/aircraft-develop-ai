@@ -1,0 +1,868 @@
+using Product as service from '../../srv/product/product-service';
+
+annotate service.Products with @(
+
+
+    UI.LineItem           : [
+        // {
+        //     $Type: 'UI.DataField',
+        //     Value: ID,
+        //     Label: '{i18n>product.ID}'
+        // },
+
+        {
+            $Type: 'UI.DataField',
+            Value: name,
+            Label: '{i18n>product.name}'
+        },
+        // {
+        //     $Type: 'UI.DataField',
+        //     Value: description,
+        //     Label: '{i18n>product.description}'
+        // },
+        {
+            $Type: 'UI.DataField',
+            Value: supplier_ID,
+            Label: '{i18n>product.supplier}'
+
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: consumerTopic_ID,
+            Label: '{i18n>product.consumerTopic}'
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: brand_ID,
+            Label: '{i18n>product.brand}'
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: status_ID,
+            Label: '{i18n>product.status}'
+        },
+
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: topicComponent_ID,
+    //     Label: '{i18n>product.topicComponent}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: assortmentModule_ID,
+    //     Label: '{i18n>product.assortmentModule}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: productGroup_ID,
+    //     Label: '{i18n>product.productGroup}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: targetGroup_ID,
+    //     Label: '{i18n>product.targetGroup}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: module_ID,
+    //     Label: '{i18n>product.module}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplierProductNumber,
+    //     Label: '{i18n>product.supplierProductNumber}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplierProductNumberVariant,
+    //     Label: '{i18n>product.supplierProductNumberVariant}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: productText,
+    //     Label: '{i18n>product.productText}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplierProductName,
+    //     Label: '{i18n>product.supplierProductName}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: receiptText,
+    //     Label: '{i18n>product.receiptText}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplierColor,
+    //     Label: '{i18n>product.supplierColor}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: evaluationColor_ID,
+    //     Label: '{i18n>product.evaluationColor}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sizeSystem_ID,
+    //     Label: '{i18n>product.sizeSystem}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: size1_ID,
+    //     Label: '{i18n>product.size1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: size2_ID,
+    //     Label: '{i18n>product.size2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sizeRun_ID,
+    //     Label: '{i18n>product.sizeRun}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: GTIN,
+    //     Label: '{i18n>product.GTIN}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplyType_ID,
+    //     Label: '{i18n>product.supplyType}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: seasonType_ID,
+    //     Label: '{i18n>product.seasonType}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: seasonYear,
+    //     Label: '{i18n>product.seasonYear}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: presentationType_ID,
+    //     Label: '{i18n>product.presentationType}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: availableFrom,
+    //     Label: '{i18n>product.availableFrom}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: availableUntil,
+    //     Label: '{i18n>product.availableUntil}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: endOfLifeCycle,
+    //     Label: '{i18n>product.endOfLifeCycle}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sapNumber,
+    //     Label: '{i18n>product.sapNumber}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: lotNumber,
+    //     Label: '{i18n>product.lotNumber}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: pricatCatalog_ID,
+    //     Label: '{i18n>product.pricatCatalog}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: productType_ID,
+    //     Label: '{i18n>product.productType}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: depotform_ID,
+    //     Label: '{i18n>product.depotform}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: ownershipStatus_ID,
+    //     Label: '{i18n>product.ownershipStatus}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: gridBox_ID,
+    //     Label: '{i18n>product.gridBox}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: omnichannel,
+    //     Label: '{i18n>product.omnichannel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: shippingInstruction_ID,
+    //     Label: '{i18n>product.shippingInstruction}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: material1_ID,
+    //     Label: '{i18n>product.material1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: portion1,
+    //     Label: '{i18n>product.portion1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: material2_ID,
+    //     Label: '{i18n>product.material2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: portion2,
+    //     Label: '{i18n>product.portion2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: material3_ID,
+    //     Label: '{i18n>product.material3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: portion3,
+    //     Label: '{i18n>product.portion3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: material4_ID,
+    //     Label: '{i18n>product.material4}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: portion4,
+    //     Label: '{i18n>product.portion4}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: material5_ID,
+    //     Label: '{i18n>product.material5}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: portion5,
+    //     Label: '{i18n>product.portion5}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: shippingPort_ID,
+    //     Label: '{i18n>product.shippingPort}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: productionPlant_ID,
+    //     Label: '{i18n>product.productionPlant}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differingIncoTerm_ID,
+    //     Label: '{i18n>product.differingIncoTerm}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: mainLabel_ID,
+    //     Label: '{i18n>product.mainLabel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: subLabel_ID,
+    //     Label: '{i18n>product.subLabel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sizeLabel_ID,
+    //     Label: '{i18n>product.sizeLabel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sizeCode_ID,
+    //     Label: '{i18n>product.sizeCode}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: hangTag_ID,
+    //     Label: '{i18n>product.hangTag}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: stringWithSeal_ID,
+    //     Label: '{i18n>product.stringWithSeal}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: priceSticker_ID,
+    //     Label: '{i18n>product.priceSticker}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: careLabel_ID,
+    //     Label: '{i18n>product.careLabel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: addHangTag_ID,
+    //     Label: '{i18n>product.addHangTag}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: houseGroup,
+    //     Label: '{i18n>product.houseGroup}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: costOfGoodsCalculation,
+    //     Label: '{i18n>product.costOfGoodsCalculation}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: lotOrDisplayCreation,
+    //     Label: '{i18n>product.lotOrDisplayCreation}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: priceLevel,
+    //     Label: '{i18n>product.priceLevel}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: onlineSalesFrom,
+    //     Label: '{i18n>product.onlineSalesFrom}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: series_ID,
+    //     Label: '{i18n>product.series}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: license_ID,
+    //     Label: '{i18n>product.license}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: program_ID,
+    //     Label: '{i18n>product.program}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: occasion_ID,
+    //     Label: '{i18n>product.occasion}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: property,
+    //     Label: '{i18n>product.property}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: quality,
+    //     Label: '{i18n>product.quality}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: pattern,
+    //     Label: '{i18n>product.pattern}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: specialProduct,
+    //     Label: '{i18n>product.specialProduct}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: surfaceWashing,
+    //     Label: '{i18n>product.surfaceWashing}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: mainForm,
+    //     Label: '{i18n>product.mainForm}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: stockingThickness,
+    //     Label: '{i18n>product.stockingThickness}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: basicDataText,
+    //     Label: '{i18n>product.basicDataText}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: purchaseOrderText,
+    //     Label: '{i18n>product.purchaseOrderText}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: vkhm1_ID,
+    //     Label: '{i18n>product.vkhm1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: vkhm2_ID,
+    //     Label: '{i18n>product.vkhm2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: vkhm3_ID,
+    //     Label: '{i18n>product.vkhm3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: attachmentMethod1_ID,
+    //     Label: '{i18n>product.attachmentMethod1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: attachmentMethod2_ID,
+    //     Label: '{i18n>product.attachmentMethod2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: attachmentMethod3_ID,
+    //     Label: '{i18n>product.attachmentMethod3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: dispositionFeature,
+    //     Label: '{i18n>product.dispositionFeature}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: loadingGroup_ID,
+    //     Label: '{i18n>product.loadingGroup}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: sustainabilitySealOfApproval_ID,
+    //     Label: '{i18n>product.sustainabilitySealOfApproval}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: isWashable,
+    //     Label: '{i18n>product.isWashable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: isBleachable,
+    //     Label: '{i18n>product.isBleachable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: isIronable,
+    //     Label: '{i18n>product.isIronable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: isCleanable,
+    //     Label: '{i18n>product.isCleanable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: isDryable,
+    //     Label: '{i18n>product.isDryable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasureAvailable,
+    //     Label: '{i18n>product.differentUnitOfMeasureAvailable}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasure1,
+    //     Label: '{i18n>product.differentUnitOfMeasure1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasureOut1,
+    //     Label: '{i18n>product.differentUnitOfMeasureOut1}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasure2,
+    //     Label: '{i18n>product.differentUnitOfMeasure2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasureOut2,
+    //     Label: '{i18n>product.differentUnitOfMeasureOut2}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasure3,
+    //     Label: '{i18n>product.differentUnitOfMeasure3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasureOut3,
+    //     Label: '{i18n>product.differentUnitOfMeasureOut3}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasure4,
+    //     Label: '{i18n>product.differentUnitOfMeasure4}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: differentUnitOfMeasureOut4,
+    //     Label: '{i18n>product.differentUnitOfMeasureOut4}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: onlineOrderStep,
+    //     Label: '{i18n>product.onlineOrderStep}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: minimumOrderQuantity,
+    //     Label: '{i18n>product.minimumOrderQuantity}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: maximumOrderQuantity,
+    //     Label: '{i18n>product.maximumOrderQuantity}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: comment,
+    //     Label: '{i18n>product.comment}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: supplierProductGroup,
+    //     Label: '{i18n>product.supplierProductGroup}'
+    // },
+    // {
+    //     $Type: 'UI.DataField',
+    //     Value: imageUrl,
+    //     Label: '{i18n>product.imageUrl}'
+    // }
+    ],
+    UI.SelectionFields    : [
+        // ID,
+        // name,
+        // description,
+        supplier_ID,
+        consumerTopic_ID,
+        brand_ID,
+        status_ID,
+        writingAppointment
+    // topicComponent_ID,
+    // assortmentModule_ID,
+    // productGroup_ID,
+    // targetGroup_ID,
+    // module_ID,
+    // supplierProductNumber,
+    // supplierProductNumberVariant,
+    // productText,
+    // supplierProductName,
+    // receiptText,
+    // supplierColor,
+    // evaluationColor_ID,
+    // sizeSystem_ID,
+    // size1_ID,
+    // size2_ID,
+    // sizeRun_ID,
+    // GTIN,
+    // supplyType_ID,
+    // seasonType_ID,
+    // seasonYear,
+    // presentationType_ID,
+    // availableFrom,
+    // availableUntil,
+    // endOfLifeCycle,
+    // sapNumber,
+    // lotNumber,
+    // pricatCatalog_ID,
+    // productType_ID,
+    // depotform_ID,
+    // ownershipStatus_ID,
+    // gridBox_ID,
+    // omnichannel,
+    // shippingInstruction_ID,
+    // material1_ID,
+    // portion1,
+    // material2_ID,
+    // portion2,
+    // material3_ID,
+    // portion3,
+    // material4_ID,
+    // portion4,
+    // material5_ID,
+    // portion5,
+    // shippingPort_ID,
+    // productionPlant_ID,
+    // differingIncoTerm_ID,
+    // mainLabel_ID,
+    // subLabel_ID,
+    // sizeLabel_ID,
+    // sizeCode_ID,
+    // hangTag_ID,
+    // stringWithSeal_ID,
+    // priceSticker_ID,
+    // careLabel_ID,
+    // addHangTag_ID,
+    // houseGroup,
+    // costOfGoodsCalculation,
+    // lotOrDisplayCreation,
+    // priceLevel,
+    // onlineSalesFrom,
+    // series_ID,
+    // license_ID,
+    // program_ID,
+    // occasion_ID,
+    // property,
+    // quality,
+    // pattern,
+    // specialProduct,
+    // surfaceWashing,
+    // mainForm,
+    // stockingThickness,
+    // basicDataText,
+    // purchaseOrderText,
+    // vkhm1_ID,
+    // vkhm2_ID,
+    // vkhm3_ID,
+    // attachmentMethod1_ID,
+    // attachmentMethod2_ID,
+    // attachmentMethod3_ID,
+    // dispositionFeature,
+    // loadingGroup_ID,
+    // sustainabilitySealOfApproval_ID,
+    // isWashable,
+    // isBleachable,
+    // isIronable,
+    // isCleanable,
+    // isDryable,
+    // differentUnitOfMeasureAvailable,
+    // differentUnitOfMeasure1,
+    // differentUnitOfMeasureOut1,
+    // differentUnitOfMeasure2,
+    // differentUnitOfMeasureOut2,
+    // differentUnitOfMeasure3,
+    // differentUnitOfMeasureOut3,
+    // differentUnitOfMeasure4,
+    // differentUnitOfMeasureOut4,
+    // onlineOrderStep,
+    // minimumOrderQuantity,
+    // maximumOrderQuantity,
+    // comment,
+    // supplierProductGroup,
+    // imageUrl
+    ],
+    UI.PresentationVariant: {
+        SortOrder     : [{
+            Property  : writingAppointment, // Sort by the category
+            Descending: false // Can be true or false (ASC or DESC)
+        }],
+        GroupBy       : [writingAppointment],
+        Visualizations: ['@UI.LineItem']
+    },
+
+);
+
+annotate service.Products with {
+    supplier         @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'Suppliers',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: supplier_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : supplier.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    consumerTopic    @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'ConsumerTopics',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: consumerTopic_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : consumerTopic.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    brand            @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'Brands',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: brand_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : brand.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    targetGroup      @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'TargetGroups',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: targetGroup_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : targetGroup.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    topicComponent   @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'TopicComponents',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: topicComponent_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : topicComponent.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    assortmentModule @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'AssortmentModules',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: assortmentModule_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : assortmentModule.name,
+            ![@UI.TextArrangement]: #TextFirst,
+        }
+    );
+
+    productGroup     @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'ProductGroups',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: productGroup_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : productGroup.name,
+            ![@UI.TextArrangement]: #TextOnly,
+        }
+    );
+
+    sizeSystem       @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'SizeSystems',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: sizeSystem_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : sizeSystem.name,
+            ![@UI.TextArrangement]: #TextOnly,
+        }
+    );
+
+    gridBox          @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'NineGridBoxes',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: gridBox_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : gridBox.name,
+            ![@UI.TextArrangement]: #TextOnly,
+        }
+    );
+
+    status           @(
+        Common.ValueList               : {
+            $Type         : 'Common.ValueListType',
+            CollectionPath: 'ProductStatus',
+            Parameters    : [{
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: status_ID,
+                ValueListProperty: 'ID',
+            }, ],
+        },
+        Common.ValueListWithFixedValues: true,
+        Common.Text                    : {
+            $value                : status_ID,
+            ![@UI.TextArrangement]: #TextOnly,
+        }
+    );
+
+};
+
+annotate service.Products with {
+    // Annotate each property that will be used as a filter
+    ID         @(Common.Label: '{i18n>product.ID}');
+
+    name       @(Common.Label: '{i18n>product.name}');
+
+    status     @(Common.Label: '{i18n>product.status}');
+
+    // This is especially important for association fields
+    supplier   @(Common.Label: '{i18n>product.supplier}');
+
+    brand      @(Common.Label: '{i18n>product.brand}');
+
+    seasonYear @(Common.Label: '{i18n>product.seasonYear}');
+
+    addHangTag @(Common.Label: '{i18n>product.addHangTag}');
+}

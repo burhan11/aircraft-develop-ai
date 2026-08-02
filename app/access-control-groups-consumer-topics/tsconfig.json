@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "rootDir": "./webapp",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "accesscontrolgroupsconsumertopics/*": ["./webapp/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./node_modules/@sapui5/types", "../../node_modules/@types", "../../node_modules/@sapui5/types"]
+  },
+  "include": ["./webapp/**/*"],
+  "exclude": ["node_modules", "dist", "webapp/test", "webapp/test-resources", "webapp/Component-preload.js"]
+}

@@ -1,0 +1,163 @@
+<mvc:View xmlns:uxap="sap.uxap" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
+    xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield"
+    controllerName="com.valantic.preorder.planning.controller.Detail" class="sapUiSizeCompact">
+    <uxap:ObjectPageLayout id="objectPageLayout" enableLazyLoading="true" useIconTabBar="true"
+        showTitleInHeaderContent="false"
+        upperCaseAnchorBar="false" showHeaderContent="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:heading>
+
+                    <uxap:ObjectPageHeader>
+                        <!-- <VBox>
+                            <HBox alignItems="Center">
+                                <Title text="{name}"></Title>
+
+                            </HBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginTop">
+                            <HBox alignItems="Center">
+                                <Label text="{i18n>planning.new.supplier}:" design="Bold"/>
+                                <Text text="{supplier/NAME} ({supplier_ID})" />
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <Label text="{i18n>planning.new.consumerTopic}:" design="Bold" />
+                                <Text text="{consumerTopic/NAME} ({consumerTopic_ID})" />
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <Label text="{i18n>planning.new.brand}:" design="Bold" />
+                                <Text text="{brand/NAME} ({brand_ID})" />
+                            </HBox>
+                        </VBox> -->
+                        <HBox alignItems="Center" wrap="NoWrap" class="sapUiLargeMarginTop detailHeaderRow">
+                            <Title text="{name}" 
+                                class="sapUiTinyMarginEnd"/>
+                            <Text text="" 
+                                class="sapUiTinyMarginBeginEnd"/>
+                            <Label text="{i18n>planning.new.supplier}:" 
+                                design="Bold" 
+                                class="sapUiTinyMarginEnd"/>
+                            <Text text="{supplier/NAME} ({supplier_ID})" 
+                                class="sapUiSmallMarginEnd"/>
+                            <Text text="" 
+                                class="sapUiTinyMarginBeginEnd"/>
+                            <Label text="{i18n>planning.new.consumerTopic}:" 
+                                design="Bold" 
+                                class="sapUiTinyMarginEnd"/>
+                            <Text text="{consumerTopic/NAME} ({consumerTopic_ID})" 
+                                class="sapUiSmallMarginEnd"/>
+                            <Text text="" 
+                                class="sapUiTinyMarginBeginEnd"/>
+                            <Label text="{i18n>planning.new.brand}:" 
+                                design="Bold" 
+                                class="sapUiTinyMarginEnd"/>
+                            <Text text="{brand/NAME} ({brand_ID})" />
+                        </HBox>
+                    </uxap:ObjectPageHeader>
+                </uxap:heading>
+                <uxap:actions>
+                    <HBox alignItems="Center" justifyContent="End">
+                        <ObjectStatus text="{status_name}"
+                            state="{path: 'status_ID', formatter: '.formatStatusState'}"
+                            inverted="true"
+                            icon="{path: 'status_ID', formatter: '.formatStatusIcon'}"
+                            class="sapUiSmallMarginEnd" />
+                        <Button class="sapUiSmallMarginEnd" text="{i18n>planning.release}"
+                            press=".onConfirmSAPCreation" type="Emphasized"
+                            enabled="{= (${status_ID} === 'InProgress' || ${status_ID} === 'ToCheck' || ${status_ID} === 'CreationFailed') &amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                            visible="{= ${status_ID} === 'InProgress' || ${status_ID} === 'ToCheck' || ${status_ID} === 'CreationFailed' }" />
+                        <Button class="sapUiSmallMarginEnd" text="{i18n>planning.validate}"
+                            press=".onValidate" type="Transparent"
+                            enabled="{= (${status_ID} === 'InProgress' || ${status_ID} === 'ToCheck' || ${status_ID} === 'CreationFailed') &amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                            visible="{= (${status_ID} === 'InProgress' || ${status_ID} === 'ToCheck' || ${status_ID} === 'CreationFailed')}" />
+                        <Button class="sapUiSmallMarginEnd" text="{i18n>planning.toCheck}"
+                            press=".onRelease" type="Transparent"
+                            enabled="{= (${status_ID} === 'InProgress' || ${status_ID} === 'CreationFailed') &amp;&amp; !!${budgetData>/houseGroupBudgets} }"
+                            visible="{= ${status_ID} === 'InProgress' || ${status_ID} === 'CreationFailed' }" />
+                        <Button class="sapUiSmallMarginEnd" text="{i18n>planning.InProgress}"
+                            press=".onInProgress" type="Transparent"
+                            enabled="{= (${status_ID} === 'ToCheck' )}"
+                            visible="{= ${status_ID} === 'ToCheck' }" />
+                        <Button class="sapUiSmallMarginEnd" text="{i18n>archive.title}" press=".onArchive"
+                            type="Transparent"
+                            enabled="{= ${status_ID} !== 'RequestedToSAP' &amp;&amp; ${status_ID} !== 'MarkedForDeletion' }"
+                            visible="{= ${status_ID} !== 'MarkedForDeletion' }" />
+                        <Button text="{i18n>deletion.title}" press=".onMarkForDeletion"
+                            type="Reject"
+                            enabled="{= ${status_ID} !== 'CreatedInSAP' &amp;&amp; ${status_ID} !== 'MarkedForDeletion' }"
+                            visible="{= ${status_ID} !== 'CreatedInSAP' &amp;&amp; ${status_ID} !== 'MarkedForDeletion' }" />
+                    </HBox>
+                </uxap:actions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+        </uxap:headerContent>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="{i18n>planningTab}">
+                <uxap:subSections>
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.planning.view.fragments.BudgetKT"
+                        type="XML" />
+                </uxap:subSections>
+                <!-- <uxap:subSections>
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.planning.view.fragments.BudgetHG"
+                        type="XML" />
+                </uxap:subSections> -->
+                <uxap:subSections>
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.planning.view.fragments.PlanningProducts"
+                        type="XML" />
+                </uxap:subSections>
+
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>planning.generalInfo}">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="{i18n>planning.generalInfo}">
+                        <uxap:actions>
+                            <Button text="{i18n>common.edit}" press=".onEditGeneralInfo"
+                                visible="{= !${editState>/editable} &amp;&amp; (${status_ID} === 'InProgress' || ${status_ID} === 'CreationFailed')}" />
+                            <Button text="{i18n>common.save}" press=".onSaveGeneralInfo"
+                                visible="{editState>/editable}" type="Emphasized" />
+                            <Button text="{i18n>common.cancel}" press=".onCancelGeneralInfo"
+                                visible="{editState>/editable}" />
+                        </uxap:actions>
+                        <smartform:SmartForm editable="{editState>/editable}" entitySet="Planning"
+                            class="sapUiSmallMarginTop">
+                            <smartform:layout>
+                                        <smartform:ColumnLayout columnsM="2" columnsL="3"
+                                            columnsXL="4" />
+                                    </smartform:layout>
+                            <smartform:Group>
+                                <smartform:GroupElement>
+                                    <smartfield:SmartField value="{date}" entitySet="Planning" />
+                                </smartform:GroupElement>
+                                <smartform:GroupElement>
+                                    <smartfield:SmartField value="{productionPlant_WERKS}" entitySet="Planning" textInEditModeSource="ValueList" />
+                                </smartform:GroupElement>
+                                <smartform:GroupElement>
+                                    <smartfield:SmartField value="{allocationMode_ID}" entitySet="Planning" textInEditModeSource="ValueList" />
+                                </smartform:GroupElement>
+                                <smartform:GroupElement>
+                                    <smartfield:SmartField value="{orderReleaseText}" entitySet="Planning" />
+                                </smartform:GroupElement>
+                                <smartform:GroupElement>
+                                    <smartfield:SmartField value="{consumerTopicShortID}" entitySet="Planning" />
+                                </smartform:GroupElement>
+                            </smartform:Group>
+                        </smartform:SmartForm>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="{i18n>orderTab}">
+                <uxap:subSections>
+                    <core:Fragment
+                        fragmentName="com.valantic.preorder.planning.view.fragments.SAPOrderItems"
+                        type="XML" />
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+
+</mvc:View>

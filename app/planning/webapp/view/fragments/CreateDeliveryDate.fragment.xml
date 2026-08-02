@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="addDeliveryDateDialog"
+        title="{i18n>massEdit.deliveryDate.title}">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Label text="{i18n>massEdit.deliveryDate.label}" required="true" />
+                <DatePicker
+                    id="deliveryDatePicker"
+                    width="100%"
+                    placeholder="{i18n>massEdit.deliveryDate.placeholder}"
+                    displayFormat="long" />
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>okay}" type="Emphasized"
+                press=".onSaveDeliveryDate" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>cancel}" press=".onDialogCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
