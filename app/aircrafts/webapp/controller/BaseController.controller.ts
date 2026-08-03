@@ -4,11 +4,16 @@ import ODataV2Model from "sap/ui/model/odata/v2/ODataModel";
 import { ModelNames } from "../utils/enums/ModelNames";
 import Filter from "sap/ui/model/Filter";
 import Router from "sap/ui/core/routing/Router";
+import JSONModel from "sap/ui/model/json/JSONModel";
 
 export default abstract class BaseController extends Controller {
 
   public getODataModel(sName?: string): ODataV2Model {
     return this.getView()?.getModel(sName) as ODataV2Model;
+  };
+
+  public geteModel(sName?: string): JSONModel {
+    return this.getView()?.getModel(sName) as JSONModel;
   };
 
   public readV2Data(
@@ -48,7 +53,7 @@ export default abstract class BaseController extends Controller {
     });
   };
 
-  private getRouter(): Router {
+  public getRouter(): Router {
     return UIComponent.getRouterFor(this);
   };
 

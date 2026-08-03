@@ -34,7 +34,6 @@ annotate service.Aeroplanes with @(
     UI.SelectionFields: [
         manufacturer,
         category,
-        createdAt
     ]
 );
 

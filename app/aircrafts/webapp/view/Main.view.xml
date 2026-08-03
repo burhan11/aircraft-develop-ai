@@ -24,7 +24,7 @@
                 editable="false"
                 editTogglable="false"
                 enableAutoBinding="true"
-                tableType="ResponsiveTable"
+                tableType="Table"
                 entitySet="Aeroplanes"
                 persistencyKey="SmartTableAeroplane_Explored"
                 showRowCount="true"

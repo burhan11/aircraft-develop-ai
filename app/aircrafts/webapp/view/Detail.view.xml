@@ -12,7 +12,7 @@
         id="idDetaiPage"
         title="{i18n>title}"
     >
-        <uxap:ObjectPageLayout>
+        <uxap:ObjectPageLayout id="idObjectPageLayout">
             <uxap:headerTitle>
                 <uxap:ObjectPageHeader
                     objectTitle="{ID}"
@@ -25,12 +25,15 @@
                                 class="sapUiSmallMarginEnd"
                                 text="Edit"
                                 type="Transparent"
+                                press="onEditAeroplaneData"
                             />
                             <Button
                                 icon="sap-icon://save"
                                 class="sapUiSmallMarginEnd"
                                 text="Save"
                                 type="Transparent"
+                                press="onSaveAeroplaneData"
+                                enabled="{detailViewModel>/detail/bInEditModel}"
                             />
                         </HBox>
                     </uxap:actions>
@@ -55,7 +58,8 @@
                             <smartform:SmartForm
                                 id="idGeneralData"
                                 editTogglable="false"
-                                editable="true"
+                                editable="{detailViewModel>/detail/bInEditModel}"
+                                validationMode="Async"
                             >
                                 <smartform:layout>
                                     <smartform:ColumnLayout
@@ -72,7 +76,6 @@
                                                     textInEditModeSource="ValueList"
                                                     value="{manufacturer}"
                                                     importance="High"
-                                                    entitySet="Aeroplanes"
                                                 />
                                             </smartform:GroupElement>
                                             <smartform:GroupElement>
@@ -80,7 +83,6 @@
                                                     textInEditModeSource="ValueList"
                                                     value="{category}"
                                                     importance="High"
-                                                    entitySet="Aeroplanes"
                                                 />
                                             </smartform:GroupElement>
                                         </smartform:groupElements>
@@ -100,7 +102,8 @@
                             <smartform:SmartForm
                                 id="idOtherInfo"
                                 editTogglable="false"
-                                editable="true"
+                                editable="{detailViewModel>/detail/bInEditModel}"
+                                validationMode="Async"
                             >
                                 <smartform:layout>
                                     <smartform:ColumnLayout
@@ -117,7 +120,6 @@
                                                     textInEditModeSource="ValueList"
                                                     value="{capacity}"
                                                     importance="High"
-                                                    entitySet="Aeroplanes"
                                                 />
                                             </smartform:GroupElement>
                                             <smartform:GroupElement>
@@ -125,7 +127,6 @@
                                                     textInEditModeSource="ValueList"
                                                     value="{range}"
                                                     importance="High"
-                                                    entitySet="Aeroplanes"
                                                 />
                                             </smartform:GroupElement>
                                         </smartform:groupElements>
@@ -146,11 +147,12 @@
                     class="sapUiMediumMarginBegin"
                     width="87%"
                     placeholder="Start typing..."
+                    editable="{detailViewModel>/detail/bInEditModel}"
                 />
                 <Button
                     icon="sap-icon://paper-plane"
-                    text="Send"
                     type="Emphasized"
+                    enabled="{detailViewModel>/detail/bInEditModel}"
                 />
             </OverflowToolbar>
         </footer>
