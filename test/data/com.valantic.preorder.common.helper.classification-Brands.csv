@@ -1,7 +1,0 @@
-ID,name,description,createdAt,createdBy,modifiedAt,modifiedBy
-33a2212c-a27b-411a-8d88-c9ddb3105a0b,Brand Number 1,Description for Brand Number 1,2023-10-01T00:00:00Z,admin,2023-10-01T00:00:00Z,admin
-22b2212c-b27c-411b-8d99-d9ddb3105b1c,Brand Number 2,Description for Brand Number 2,2023-10-02T00:00:00Z,user1,2023-10-03T00:00:00Z,user2
-11c2212c-c27d-411c-8e00-e9ddb3105c2d,Brand Number 3,Description for Brand Number 3,2023-10-03T00:00:00Z,user3,2023-10-04T00:00:00Z,user4
-44d2212c-d27e-411d-8f11-f9ddb3105d3e,Brand Number 4,Description for Brand Number 4,2023-10-04T00:00:00Z,user5,2023-10-05T00:00:00Z,user6
-55e2212c-e27f-411e-8012-a9ddb3105e4f,Brand Number 5,Description for Brand Number 5,2023-10-05T00:00:00Z,user7,2023-10-06T00:00:00Z,user8
-66f2212c-f280-411f-8123-b9ddb3105f5g,Brand Number 6,Description for Brand Number 6,2023-10-06T00:00:00Z,user9,2023-10-07T00:00:00Z,user10

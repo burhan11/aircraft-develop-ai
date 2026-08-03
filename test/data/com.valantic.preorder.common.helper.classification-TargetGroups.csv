@@ -1,7 +1,0 @@
-ID,name,description,createdAt,createdBy,modifiedAt,modifiedBy
-14e285ae-6f60-4610-a6f8-f9d77cb76c45,Target Group 1,Description for Target Group 1,2023-10-01T00:00:00Z,admin,2023-10-01T00:00:00Z,admin
-24e285bf-7f61-4711-b7f9-g9e77dc87d56,Target Group 2,Description for Target Group 2,2023-10-02T00:00:00Z,user1,2023-10-03T00:00:00Z,user2
-34e286cf-8f62-4812-c8f0-h9f77ed98e67,Target Group 3,Description for Target Group 3,2023-10-03T00:00:00Z,user3,2023-10-04T00:00:00Z,user4
-44e287df-9f63-4913-d9f1-i9g77fe09f78,Target Group 4,Description for Target Group 4,2023-10-04T00:00:00Z,user5,2023-10-05T00:00:00Z,user6
-54e288ef-af64-4a14-eaf2-j9h77gf1a089,Target Group 5,Description for Target Group 5,2023-10-05T00:00:00Z,user7,2023-10-06T00:00:00Z,user8
-64e289ff-bf65-4b15-fbf3-k9i77hg2b19a,Target Group 6,Description for Target Group 6,2023-10-06T00:00:00Z,user9,2023-10-07T00:00:00Z,user10

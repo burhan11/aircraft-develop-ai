@@ -12,5 +12,6 @@ entity Aeroplanes : cuid, managed {
   category     : String(50); // e.g. "Narrow-body Commercial Jet"
   capacity     : Integer; // passenger count, e.g. 178
   range        : Integer; // in km or nautical miles, e.g. 6570
-  rawInput     : String(1000);
+  rawInput     : String;
+  confidence   : Decimal(3, 2);
 }
