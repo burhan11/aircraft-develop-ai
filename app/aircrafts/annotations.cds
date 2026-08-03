@@ -6,6 +6,7 @@ annotate service.Aeroplanes with {
     category     @Common.Label: '{i18n>category}';
     capacity     @Common.Label: '{i18n>capacity}';
     range        @title: '{i18n>range}';
+    confidence   @(Common.Label: '{i18n>confidence}');
 };
 
 annotate service.Aeroplanes with @(

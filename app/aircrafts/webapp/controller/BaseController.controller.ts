@@ -12,7 +12,7 @@ export default abstract class BaseController extends Controller {
     return this.getView()?.getModel(sName) as ODataV2Model;
   };
 
-  public geteModel(sName?: string): JSONModel {
+  public getModel(sName?: string): JSONModel {
     return this.getView()?.getModel(sName) as JSONModel;
   };
 

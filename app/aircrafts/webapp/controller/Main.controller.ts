@@ -11,7 +11,7 @@ import { RoutingActions } from "../utils/enums/RoutingActions";
 export default class Main extends BaseController {
 
   public onInit(): void {
-    const oDataModel = this.geteModel(ModelNames.ODataV2Model);
+    const oDataModel = this.getModel(ModelNames.ODataV2Model);
     const aeroplaneSmartTable = this.byId("idAeroplaneSmartTable") as SmartTable;
     aeroplaneSmartTable.attachInitialise(() => {
       const oTable = aeroplaneSmartTable.getTable() as Table;
@@ -30,13 +30,13 @@ export default class Main extends BaseController {
       "model": "",
       "manufacturer": "",
       "category": "",
-      "capacity": 0,
-      "range": 0
+      "capacity": null,
+      "range": null,
     }
     const createdEntry = await this.createV2Data("/Aeroplanes", payload);
-    this.navTo("RouteDetail", {
+    this.navTo(RoutingRoutes.routeViewDetail, {
       id: (createdEntry as any).ID,
-      query: { action: "CREATE" }
+      query: { action: RoutingActions.viewDetailCreate }
     });
   }
 }

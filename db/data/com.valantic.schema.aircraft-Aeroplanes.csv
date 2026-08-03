@@ -1,2 +1,2 @@
-ID,model,manufacturer,category,capacity,range
-89230600-bd3e-47cc-a64a-01953f302bd8,Boeing 737 MAX 8,Boeing,Commercial Plane,200,7000
+ID,model,manufacturer,category,capacity,range,confidence
+89230600-bd3e-47cc-a64a-01953f302bd8,Boeing 737 MAX 8,Boeing,Commercial Plane,200,7000,0.00

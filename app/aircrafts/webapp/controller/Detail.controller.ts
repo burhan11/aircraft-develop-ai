@@ -5,6 +5,7 @@ import { UUID } from "node:crypto";
 import { ModelNames } from "../utils/enums/ModelNames";
 import { RoutingActions } from "../utils/enums/RoutingActions";
 import ObjectPageLayout from "sap/uxap/ObjectPageLayout";
+import MessageToast from "sap/m/MessageToast";
 
 /**
  * @namespace com.valantic.aircrafts.controller
@@ -40,15 +41,15 @@ export default class Detail extends BaseController {
         break;
     };
 
-    this.geteModel(ModelNames.detailViewModel).setProperty(
+    this.getModel(ModelNames.detailViewModel).setProperty(
       "/detail/bInEditModel",
       bInEditModel
     );
-    this.geteModel(ModelNames.detailViewModel).setProperty(
+    this.getModel(ModelNames.detailViewModel).setProperty(
       "/detail/aeroplaneId",
       aeroplaneId
     );
-    this.geteModel(ModelNames.detailViewModel).setProperty(
+    this.getModel(ModelNames.detailViewModel).setProperty(
       "/detail/aeroplanePath",
       aeroplanePath
     );
@@ -58,11 +59,70 @@ export default class Detail extends BaseController {
   };
 
   public onEditAeroplaneData(): void {
-
+    const aeroplaneId = this.getModel(ModelNames.detailViewModel).getProperty(
+      "/detail/aeroplaneId"
+    );
+    this.navTo(RoutingRoutes.routeViewDetail, {
+      id: aeroplaneId,
+      query: { action: RoutingActions.viewDetailCreate }
+    });
   }
+
+  public onCancelAeroplaneData(): void {
+    const aeroplaneId = this.getModel(ModelNames.detailViewModel).getProperty(
+      "/detail/aeroplaneId"
+    );
+    this.navTo(RoutingRoutes.routeViewDetail, {
+      id: aeroplaneId,
+      query: { action: RoutingActions.viewDetailDisplay }
+    });
+  };
 
   public onSaveAeroplaneData(): void {
-    
-  }
+    const aeroplaneId = this.getModel(ModelNames.detailViewModel).getProperty(
+      "/detail/aeroplaneId"
+    );
 
+  };
+
+  public async onGenerate(): Promise<void> {
+    const oDataModel = this.getODataModel(ModelNames.ODataV2Model);
+    const sPrompt = this.byId("idPromptInput").getValue();
+    const aeroplaneId = this.getModel(ModelNames.detailViewModel).getProperty(
+      "/detail/aeroplaneId"
+    );
+    const aeroplanePath = this.getModel(ModelNames.detailViewModel).getProperty(
+      "/detail/aeroplanePath"
+    );
+
+    if (!sPrompt || sPrompt.trim().length === 0) {
+      MessageToast.show("Please describe the aircraft");
+      return;
+    }
+
+    var response = {};
+    response = await new Promise((resolve, reject) => {
+      oDataModel.callFunction("/Aeroplanes_enrichAeroplaneData", {
+        method: 'POST',
+        urlParameters: {
+          ID: aeroplaneId,
+          userPrompt: sPrompt
+        },
+        success: (data: any) => {
+          oDataModel.refresh();
+          resolve(data);
+        },
+        error: (error: any) => {
+          reject(error);
+        }
+      })
+    });
+
+    Object.entries(response).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        oDataModel.setProperty(`${aeroplanePath}/${key}`, value)
+      }
+    });
+    this.byId("idPromptInput").setValue("");
+  }
 }

@@ -26,6 +26,15 @@
                                 text="Edit"
                                 type="Transparent"
                                 press="onEditAeroplaneData"
+                                enabled="{= ${detailViewModel>/detail/bInEditModel} !== true}"
+                            />
+                            <Button
+                                icon="sap-icon://decline"
+                                class="sapUiSmallMarginEnd"
+                                text="Cancel"
+                                type="Transparent"
+                                press="onCancelAeroplaneData"
+                                enabled="{detailViewModel>/detail/bInEditModel}"
                             />
                             <Button
                                 icon="sap-icon://save"
@@ -33,20 +42,11 @@
                                 text="Save"
                                 type="Transparent"
                                 press="onSaveAeroplaneData"
-                                enabled="{detailViewModel>/detail/bInEditModel}"
                             />
                         </HBox>
                     </uxap:actions>
                 </uxap:ObjectPageHeader>
             </uxap:headerTitle>
-            <uxap:headerContent>
-                <layout:VerticalLayout>
-                    <ObjectStatus
-                        title="{i18n>model}"
-                        text="{model}"
-                    />
-                </layout:VerticalLayout>
-            </uxap:headerContent>
             <uxap:sections>
                 <uxap:ObjectPageSection
                     id="idGeneral"
@@ -71,6 +71,13 @@
                                 <smartform:groups>
                                     <smartform:Group>
                                         <smartform:groupElements>
+                                            <smartform:GroupElement>
+                                                <smartfield:SmartField
+                                                    textInEditModeSource="ValueList"
+                                                    value="{model}"
+                                                    importance="High"
+                                                />
+                                            </smartform:GroupElement>
                                             <smartform:GroupElement>
                                                 <smartfield:SmartField
                                                     textInEditModeSource="ValueList"
@@ -129,6 +136,14 @@
                                                     importance="High"
                                                 />
                                             </smartform:GroupElement>
+                                            <smartform:GroupElement>
+                                                <smartfield:SmartField
+                                                    textInEditModeSource="ValueList"
+                                                    value="{confidence}"
+                                                    importance="High"
+                                                    editable="false"
+                                                />
+                                            </smartform:GroupElement>
                                         </smartform:groupElements>
                                     </smartform:Group>
                                 </smartform:groups>
@@ -144,15 +159,18 @@
                 height="90px"
             >
                 <TextArea
+                    id="idPromptInput"
                     class="sapUiMediumMarginBegin"
                     width="87%"
                     placeholder="Start typing..."
                     editable="{detailViewModel>/detail/bInEditModel}"
                 />
                 <Button
-                    icon="sap-icon://paper-plane"
+                    icon="sap-icon://ai"
                     type="Emphasized"
                     enabled="{detailViewModel>/detail/bInEditModel}"
+                    class="sapUiSmallMarginTop"
+                    press="onGenerate"
                 />
             </OverflowToolbar>
         </footer>
