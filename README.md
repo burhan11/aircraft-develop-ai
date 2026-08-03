@@ -12,16 +12,10 @@
 
 ## Start development mode
 
-- Go to `db/synced/schema.cds` and remove `@cds.persistence.exists` annotations (!DO NOT COMMIT THESE CHANGES!)
 - Open a new terminal and run `cds-ts w`
 - Create a `.env` file with the following entries:
-  ```
-  AWS_S3_ACCESS_KEY_ID=
-  AWS_S3_SECRET_KEY=
-  AWS_S3_REGION=eu-central-1
-  AWS_S3_BUCKET=test
-  GROUPS=["1","2"]
-  ```
+OPENAI_API_KEY=`your-api-key`
+
 
 ## Build project
 
