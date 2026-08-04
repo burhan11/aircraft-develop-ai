@@ -7,11 +7,19 @@ class AircraftCreationService extends cds.ApplicationService {
 
     this.on("enrichAeroplaneData", "Aeroplanes", async ({
       params: [ID],
-      data: { userPrompt }
+      data: { userPrompt, conversationHistory }
     }) => {
-      // const userPrompt = req.data.userPrompt;
+      const histroy = conversationHistory ? JSON.parse(conversationHistory) : [];
       const systemPrompt = defaultPrompt();
-      const finalPrompt = `${systemPrompt}\nUser Prompt: ${userPrompt}`;
+      const messages = [
+        { role: 'system', content: systemPrompt },
+        ...histroy,
+        { role: 'user', content: userPrompt }
+      ]
+
+      const finalPrompt = messages.map((msg) => `${msg.role}: ${msg.content}`).join('\n\n');
+
+      //`${systemPrompt}\nUser Prompt: ${userPrompt}`;
       const result = await enrichData(finalPrompt);
       return result;
     });

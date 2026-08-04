@@ -1,6 +1,6 @@
 import OpenAI from "openai"
 
-export const enrichData = async (sInput: string) => {
+export const enrichData = async (sInput: any) => {
     const openAI = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY
     });

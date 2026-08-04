@@ -12,6 +12,8 @@ import MessageToast from "sap/m/MessageToast";
  */
 export default class Detail extends BaseController {
 
+  private _conversationHistory: Array<any> = [];
+
   public onInit(): void {
     const route = this.getRouter()?.getRoute(RoutingRoutes.routeViewDetail);
     route.attachPatternMatched(this.handleRoute, this);
@@ -106,7 +108,8 @@ export default class Detail extends BaseController {
         method: 'POST',
         urlParameters: {
           ID: aeroplaneId,
-          userPrompt: sPrompt
+          userPrompt: sPrompt,
+          conversationHistory: JSON.stringify(this._conversationHistory),
         },
         success: (data: any) => {
           oDataModel.refresh();
@@ -123,6 +126,10 @@ export default class Detail extends BaseController {
         oDataModel.setProperty(`${aeroplanePath}/${key}`, value)
       }
     });
+
+    this._conversationHistory.push({ role: 'user', content: sPrompt });
+    this._conversationHistory.push({ role: 'assistent', content: JSON.stringify(response) });
+
     this.byId("idPromptInput").setValue("");
   }
 }
