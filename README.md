@@ -15,7 +15,7 @@
 - Open a new terminal and run `cds-ts w`
 - Create a `.env` file with the following entries:
 ```
-OPENAI_API_KEY=`your-api-key`
+API_KEY=`your-api-key`
 ```
 
 ## Build project
