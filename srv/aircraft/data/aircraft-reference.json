@@ -1,0 +1,10 @@
+[
+  { "model": "Boeing 737 MAX 8", "manufacturer": "Boeing", "category": "Narrow-body Commercial Jet", "capacity": 178, "range": 6570 },
+  { "model": "Airbus A320neo", "manufacturer": "Airbus", "category": "Narrow-body Commercial Jet", "capacity": 165, "range": 6300 },
+  { "model": "Airbus A350-900", "manufacturer": "Airbus", "category": "Wide-body Long-haul Jet", "capacity": 325, "range": 15000 },
+  { "model": "Boeing 787-9 Dreamliner", "manufacturer": "Boeing", "category": "Wide-body Long-haul Jet", "capacity": 296, "range": 14140 },
+  { "model": "Cessna 172", "manufacturer": "Cessna", "category": "Single-engine Propeller Aircraft", "capacity": 4, "range": 1280 },
+  { "model": "Embraer E190", "manufacturer": "Embraer", "category": "Regional Jet", "capacity": 100, "range": 4537 },
+  { "model": "ATR 72", "manufacturer": "ATR", "category": "Regional Turboprop", "capacity": 78, "range": 1528 },
+  { "model": "Bombardier Global 7500", "manufacturer": "Bombardier", "category": "Business Jet", "capacity": 19, "range": 14260 }
+]

@@ -49,9 +49,11 @@
                             change="onChangeFile"
                         />
                         <Button
+                            id="idBatchProcess"
                             text="Batch"
                             type="Emphasized"
                             press="onBatchProcess"
+                            enabled="false"
                         />
                         <ToolbarSeparator />
                         <Button

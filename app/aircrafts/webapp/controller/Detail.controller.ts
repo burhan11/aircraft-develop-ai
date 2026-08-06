@@ -6,6 +6,7 @@ import { ModelNames } from "../utils/enums/ModelNames";
 import { RoutingActions } from "../utils/enums/RoutingActions";
 import ObjectPageLayout from "sap/uxap/ObjectPageLayout";
 import MessageToast from "sap/m/MessageToast";
+import BusyIndicator from "sap/ui/core/BusyIndicator";
 
 /**
  * @namespace com.valantic.aircrafts.controller
@@ -101,6 +102,7 @@ export default class Detail extends BaseController {
       return;
     }
 
+    BusyIndicator.show();
     const data: any = await this.generateRecord(sPrompt, JSON.stringify(this._conversationHistory));
 
     const response = data?.results[0];
@@ -109,6 +111,7 @@ export default class Detail extends BaseController {
         oDataModel.setProperty(`${aeroplanePath}/${key}`, value)
       }
     });
+    BusyIndicator.hide();
 
     this._conversationHistory.push({ role: 'user', content: sPrompt });
     this._conversationHistory.push({ role: 'assistent', content: JSON.stringify(response) });

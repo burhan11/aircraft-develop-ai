@@ -6,6 +6,7 @@ import { RoutingRoutes } from "../utils/enums/RoutingRoutes";
 import { RoutingActions } from "../utils/enums/RoutingActions";
 import MessageToast from "sap/m/MessageToast";
 import Event from "sap/ui/base/Event";
+import BusyIndicator from "sap/ui/core/BusyIndicator";
 
 /**
  * @namespace com.valantic.aircrafts.controller
@@ -45,9 +46,11 @@ export default class Main extends BaseController {
 
   public async onChangeFile(oEvent: Event): Promise<void> {
     const oFile = oEvent.getParameters().files[0];
+    if(!oFile) this.byId("idBatchProcess").setEnabled(false);
     const fileReader = new FileReader();
     fileReader.onload = (e: any) => {
       this._sCsvtext = e.target.result.split("\r\n");
+      if(this._sCsvtext) this.byId("idBatchProcess").setEnabled(true);
     }
     fileReader.readAsText(oFile);
   };
@@ -55,15 +58,19 @@ export default class Main extends BaseController {
 
   public async onBatchProcess(): Promise<void> {
     const multipleRecord = JSON.stringify(this._sCsvtext);
+    BusyIndicator.show();
     const data: any = await this.generateRecord(multipleRecord, "");
 
     for (let i = 0; i < data?.results.length; i++) {
       const payload = data?.results[i];
       this.createV2Data("/Aeroplanes", payload);
     }
+    BusyIndicator.hide();
     const aeroplaneSmartTable = this.byId("idAeroplaneSmartTable") as SmartTable;
     aeroplaneSmartTable.rebind(true);
     MessageToast.show("Records created");
+    this.byId("idFileUpload").clear()
+    this.byId("idBatchProcess").setEnabled(false);
   };
 
 }
