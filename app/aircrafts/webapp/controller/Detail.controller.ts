@@ -114,5 +114,6 @@ export default class Detail extends BaseController {
     this._conversationHistory.push({ role: 'assistent', content: JSON.stringify(response) });
 
     this.byId("idPromptInput").setValue("");
+    MessageToast.show("Record updated");
   };
 }

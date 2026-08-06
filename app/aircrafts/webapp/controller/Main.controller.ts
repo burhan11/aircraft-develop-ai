@@ -63,6 +63,7 @@ export default class Main extends BaseController {
     }
     const aeroplaneSmartTable = this.byId("idAeroplaneSmartTable") as SmartTable;
     aeroplaneSmartTable.rebind(true);
+    MessageToast.show("Records created");
   };
 
 }

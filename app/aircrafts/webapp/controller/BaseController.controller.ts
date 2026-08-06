@@ -5,7 +5,7 @@ import { ModelNames } from "../utils/enums/ModelNames";
 import Filter from "sap/ui/model/Filter";
 import Router from "sap/ui/core/routing/Router";
 import JSONModel from "sap/ui/model/json/JSONModel";
-import { UUID } from "node:crypto";
+import MessageBox from "sap/m/MessageBox";
 
 export default abstract class BaseController extends Controller {
 
@@ -68,20 +68,24 @@ export default abstract class BaseController extends Controller {
   ): Promise<void> {
     return await new Promise((resolve, reject) => {
       const oDataModel = this.getODataModel(ModelNames.ODataV2Model);
-      oDataModel.callFunction("/enrichAeroplaneData", {
-        method: 'GET',
-        urlParameters: {
-          userPrompt: sPrompt,
-          conversationHistory: conversationHistory,
-        },
-        success: (data: any) => {
-          oDataModel.refresh();
-          resolve(data);
-        },
-        error: (error: any) => {
-          reject(error);
-        }
-      })
+      try {
+        oDataModel.callFunction("/enrichAeroplaneData", {
+          method: 'GET',
+          urlParameters: {
+            userPrompt: sPrompt,
+            conversationHistory: conversationHistory,
+          },
+          success: (data: any) => {
+            oDataModel.refresh();
+            resolve(data);
+          },
+          error: (error: any) => {
+            reject(error);
+          }
+        })
+      } catch (error) {
+        MessageBox.error("Error while updating");
+      }
     });
   }
 
