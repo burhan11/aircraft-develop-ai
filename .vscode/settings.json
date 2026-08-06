@@ -7,5 +7,6 @@
     // "csv (semicolon)",
     // "tab",
     // "tsv"
-  ]
+  ],
+  "breadcrumbs.enabled": false
 }

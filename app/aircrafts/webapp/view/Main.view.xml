@@ -1,4 +1,5 @@
 <mvc:View
+    xmlns:unified="sap.ui.unified"
     xmlns:smarttable="sap.ui.comp.smarttable"
     xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
     xmlns:f="sap.f"
@@ -36,6 +37,23 @@
                 <smarttable:customToolbar>
                     <OverflowToolbar>
                         <ToolbarSpacer />
+                        <unified:FileUploader
+                            id="idFileUpload"
+                            class="sapUiTinyMarginTop"
+                            fileType="csv"
+                            icon="sap-icon://upload"
+                            mimeType="text/csv"
+                            style="Transparent"
+                            width="13%"
+                            multiple="false"
+                            change="onChangeFile"
+                        />
+                        <Button
+                            text="Batch"
+                            type="Emphasized"
+                            press="onBatchProcess"
+                        />
+                        <ToolbarSeparator />
                         <Button
                             text="Create"
                             type="Emphasized"

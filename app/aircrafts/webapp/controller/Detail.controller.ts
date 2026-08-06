@@ -84,7 +84,6 @@ export default class Detail extends BaseController {
     const aeroplaneId = this.getModel(ModelNames.detailViewModel).getProperty(
       "/detail/aeroplaneId"
     );
-
   };
 
   public async onGenerate(): Promise<void> {
@@ -102,25 +101,9 @@ export default class Detail extends BaseController {
       return;
     }
 
-    var response = {};
-    response = await new Promise((resolve, reject) => {
-      oDataModel.callFunction("/Aeroplanes_enrichAeroplaneData", {
-        method: 'POST',
-        urlParameters: {
-          ID: aeroplaneId,
-          userPrompt: sPrompt,
-          conversationHistory: JSON.stringify(this._conversationHistory),
-        },
-        success: (data: any) => {
-          oDataModel.refresh();
-          resolve(data);
-        },
-        error: (error: any) => {
-          reject(error);
-        }
-      })
-    });
+    const data: any = await this.generateRecord(sPrompt, JSON.stringify(this._conversationHistory));
 
+    const response = data?.results[0];
     Object.entries(response).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         oDataModel.setProperty(`${aeroplanePath}/${key}`, value)
@@ -131,5 +114,5 @@ export default class Detail extends BaseController {
     this._conversationHistory.push({ role: 'assistent', content: JSON.stringify(response) });
 
     this.byId("idPromptInput").setValue("");
-  }
+  };
 }

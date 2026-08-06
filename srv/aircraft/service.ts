@@ -1,26 +1,20 @@
 import cds, { Request } from '@sap/cds'
 import { defaultPrompt } from '../systemPrompts/default-prompt';
-import { enrichData } from '../lib/ai-functions';
+import { enrichDataUsingAI } from '../lib/ai-functions';
 
 class AircraftCreationService extends cds.ApplicationService {
   async init(): Promise<void> {
 
-    this.on("enrichAeroplaneData", "Aeroplanes", async ({
-      params: [ID],
-      data: { userPrompt, conversationHistory }
-    }) => {
-      const histroy = conversationHistory ? JSON.parse(conversationHistory) : [];
+    this.on("enrichAeroplaneData", async (req: Request) => {
+      const histroy = req.data.conversationHistory ? JSON.parse(req.data.conversationHistory) : [];
       const systemPrompt = defaultPrompt();
       const messages = [
         { role: 'system', content: systemPrompt },
         ...histroy,
-        { role: 'user', content: userPrompt }
+        { role: 'user', content: req.data.userPrompt }
       ]
-
       const finalPrompt = messages.map((msg) => `${msg.role}: ${msg.content}`).join('\n\n');
-
-      //`${systemPrompt}\nUser Prompt: ${userPrompt}`;
-      const result = await enrichData(finalPrompt);
+      const result = await enrichDataUsingAI(finalPrompt);
       return result;
     });
 

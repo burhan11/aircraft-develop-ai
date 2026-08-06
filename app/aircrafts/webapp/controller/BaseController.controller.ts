@@ -5,6 +5,7 @@ import { ModelNames } from "../utils/enums/ModelNames";
 import Filter from "sap/ui/model/Filter";
 import Router from "sap/ui/core/routing/Router";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import { UUID } from "node:crypto";
 
 export default abstract class BaseController extends Controller {
 
@@ -60,6 +61,29 @@ export default abstract class BaseController extends Controller {
   public navTo(sName: string, oParamter: any): void {
     this.getRouter().navTo(sName, oParamter)
   };
+
+  public async generateRecord(
+    sPrompt: string,
+    conversationHistory: string
+  ): Promise<void> {
+    return await new Promise((resolve, reject) => {
+      const oDataModel = this.getODataModel(ModelNames.ODataV2Model);
+      oDataModel.callFunction("/enrichAeroplaneData", {
+        method: 'GET',
+        urlParameters: {
+          userPrompt: sPrompt,
+          conversationHistory: conversationHistory,
+        },
+        success: (data: any) => {
+          oDataModel.refresh();
+          resolve(data);
+        },
+        error: (error: any) => {
+          reject(error);
+        }
+      })
+    });
+  }
 
 }
 
