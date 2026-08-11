@@ -12,6 +12,5 @@ entity Aeroplanes : cuid, managed {
   category     : String(50);
   capacity     : Integer;
   range        : Integer;
-  userPrompt   : String(1000);
   confidence   : Decimal(3, 2);
 }

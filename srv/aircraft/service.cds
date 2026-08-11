@@ -5,4 +5,6 @@ service AircraftService {
 
   function enrichAeroplaneData(userPrompt: String,
                                conversationHistory: String) returns array of Aeroplanes;
+
+  function searchAeroplaneByRange(range: Integer)           returns array of Aeroplanes;
 }

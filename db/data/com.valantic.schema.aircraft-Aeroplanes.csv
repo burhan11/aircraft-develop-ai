@@ -1,2 +1,4 @@
 ID,model,manufacturer,category,capacity,range,confidence
 89230600-bd3e-47cc-a64a-01953f302bd8,Boeing 737 MAX 8,Boeing,Commercial Plane,200,7000,0.00
+89230600-bd3e-47cc-a64a-01953f302bd9,Airbus A350-900,Airbus,wide-body,325,,
+89230600-bd3e-47cc-a64a-01953f302bd0,Cessna 172 8,,small single-engine,4,10000,

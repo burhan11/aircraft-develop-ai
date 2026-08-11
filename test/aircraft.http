@@ -1,55 +1,13 @@
 ###Product Metadata
-GET http://localhost:4004/odata/v4/product/$metadata
+GET http://localhost:4004/odata/v4/aircraft/$metadata
 
 ###Get Products
 GET http://localhost:4004/odata/v4/product/Products?$expand=to_Purchase,to_Sales,status,to_Size
 Accept-Language: 'en'
 
-###Get Products temp
-GET http://localhost:4004/odata/v4/product/UploadProducts
+###Search Aircraft by range
+GET http://localhost:4004/odata/v4/aircraft/searchAeroplaneByRange(range=5000)
 
-
-###Create Product with KT warning
-POST http://localhost:4004/odata/v4/product/Products
-Content-Type: application/json
-
-{
-        "topicComponent_ID":"64817147-c2a0-508e-a35a-831969066bg8",
-
-        "sizeSystem_ID": "Test",
-        "availableFrom": "2023-10-01",
-        "availableUntil": "2023-12-31",
-        "endOfLifeCycle": "2024-01-01",
-
-        "gridBox_ID": "Test",
-        "omnichannel": "TestValue",
-
-        "addHangTag_ID": "Test"
-
-}
-
-
-###Create Product with existing KT
-POST http://localhost:4004/odata/v4/product/Products
-Content-Type: application/json
-
-{
-        "supplier_ID":"98664237-ce10-433c-867d-3d46a3cde3c5",
-
-        "sizeSystem_ID": "Test",
-        "availableFrom": "2023-10-01",
-        "availableUntil": "2023-12-31",
-        "endOfLifeCycle": "2024-01-01",
-
-        "gridBox_ID": "Test",
-        "omnichannel": "TestValue",
-
-        "addHangTag_ID": "Test",
-
-        "consumerTopic_ID": "f4444355-50a0-42ac-bb88-6823da932952",
-        "brand_ID": "33a2212c-a27b-411a-8d88-c9ddb3105a0b"
-
-}  
 
 ### Delete Product
 DELETE http://localhost:4004/odata/v4/product/Products(ID='00000000-0000-0000-0000-000000000001')
@@ -129,12 +87,6 @@ Content-Type: application/json
 ### Get Image URL
 GET http://localhost:4004/odata/v4/product/Products/00000000-0000-0000-0000-000000000001/getImageUrl()
 
-###Create Product with KT warning
-GET http://localhost:4004/odata/v4/product/Materials
-
-###Create Product with KT warning
-GET http://localhost:4004/odata/v4/product/importProductFromSAP(materialNumber='106090980016')
-
 ###Create Article with existing KT
 POST http://localhost:4004/odata/v4/product/Articles
 Content-Type: application/json
@@ -148,43 +100,6 @@ Content-Type: application/json
         "supplierProductName": "Test Product Name",
         "productText": "Common Text"
 }  
-
-###Get Article
-GET http://localhost:4004/odata/v4/product/Articles/d4f5b036-736a-4330-91d0-dada497b9609
-
-###Create Product from existing Article
-POST http://localhost:4004/odata/v4/product/Products
-Content-Type: application/json
-
-{       
-        "supplier_ID":"98664237-ce10-433c-867d-3d46a3cde3c5",
-        "consumerTopic_ID": "f4444355-50a0-42ac-bb88-6823da932952",
-        "brand_ID": "33a2212c-a27b-411a-8d88-c9ddb3105a0b",
-        "article_ID": "d4f5b036-736a-4330-91d0-dada497b9609",
-        "evaluationColor_ID": "64817147-c2a0-508e-a35a-831969066di0",
-        "supplierColor": "White"
-}
-
-###Get Product
-GET http://localhost:4004/odata/v4/product/Products/dbc261b0-d067-4c24-8898-a0b751c825b8
-
-###Create ProductSize from existing Product
-POST http://localhost:4004/odata/v4/product/ProductSizes
-Content-Type: application/json
-
-{       
-        "supplier_ID":"98664237-ce10-433c-867d-3d46a3cde3c5",
-        "consumerTopic_ID": "f4444355-50a0-42ac-bb88-6823da932952",
-        "brand_ID": "33a2212c-a27b-411a-8d88-c9ddb3105a0b",
-        "article_ID": "d4f5b036-736a-4330-91d0-dada497b9609",
-        "product_ID": "dbc261b0-d067-4c24-8898-a0b751c825b8",
-        "evaluationColor_ID": "64817147-c2a0-508e-a35a-831969066di0",
-        "size_1_CODE": "XL",
-        "GTIN": "GTIN1234567"
-}
-
-###Get ProductSize
-GET http://localhost:4004/odata/v4/product/ProductSizes/b60c4e30-17fb-4ff6-b1e9-75572a6bff92
 
 ###Update Article
 PATCH http://localhost:4004/odata/v4/product/Articles/d4f5b036-736a-4330-91d0-dada497b9609

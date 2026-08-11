@@ -9,8 +9,8 @@ class AircraftCreationService extends cds.ApplicationService {
     this.on("enrichAeroplaneData", async (req: Request) => {
       const histroy = req.data.conversationHistory ? JSON.parse(req.data.conversationHistory) : [];
       const referenceRecord: any = this.searchIntoReferenceData(req.data.userPrompt);
-      const referencText = referenceRecord.length > 0 
-        ? `here are top 2 reference record from my dataset, use to answer it instead of your traning data${referenceRecord}` 
+      const referencText = referenceRecord.length > 0
+        ? `here are top 2 reference record from my dataset, use to answer it instead of your traning data${referenceRecord}`
         : 'No reference record found use your traning knowledge';
       const messages = [
         { role: 'system', content: `${defaultPrompt()}\n\n${referencText}` },
@@ -22,10 +22,20 @@ class AircraftCreationService extends cds.ApplicationService {
       return result;
     });
 
+    this.on("searchAeroplaneByRange", async (req: Request) => {
+      const { Aeroplanes } = cds.entities("com.valantic.schema.aircraft")
+      const searchRange = req.data.range;
+      return cds.run(
+        SELECT.from(Aeroplanes)
+        .where({ range: { ">=": searchRange } })
+      )  
+    });
+
     return super.init();
   }
 
-  searchIntoReferenceData = (userPrompt: string) =>  {
+  // RAG search
+  searchIntoReferenceData = (userPrompt: string) => {
     const userPromptLower = userPrompt?.toLowerCase();
     const response = referenceData.map((record) => {
       const refRecord = `${record.model} ${record.manufacturer} ${record.category} ${record.category} ${record.range}`;

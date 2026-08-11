@@ -10,6 +10,7 @@
     "@aws-sdk/s3-request-presigner": "^3.1037.0",
     "@cap-js-community/odata-v2-adapter": "^1.15.10",
     "@cap-js/hana": "^2.7.1",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "@sap-cloud-sdk/connectivity": "^4.6.0",
     "@sap-cloud-sdk/http-client": "^4.6.0",
     "@sap-cloud-sdk/resilience": "^4.6.0",
@@ -17,7 +18,8 @@
     "@sap/hana-client": "^2.28.20",
     "@sap/xssec": "^4.13.0",
     "express": "^5.2.1",
-    "openai": "^6.49.0"
+    "openai": "^6.49.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@cap-js/cds-typer": ">=0.38.0",
