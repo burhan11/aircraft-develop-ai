@@ -1,11 +1,10 @@
 import BaseComponent from "sap/ui/core/UIComponent";
 import { createDeviceModel } from "./model/models";
-import detailViewModel from "./model/view/detailViewModel";
-import { ModelNames } from "./utils/enums/ModelNames";
+import copilotModel from "./model/copilotModel/copilotModel";
 import JSONModel from "sap/ui/model/json/JSONModel";
 
 /**
- * @namespace com.valantic.aircrafts
+ * @namespace com.valantic.aviation
  */
 export default class Component extends BaseComponent {
 
@@ -26,11 +25,11 @@ export default class Component extends BaseComponent {
         // enable routing
         this.getRouter().initialize();
 
-        var viewModel = this.getModel(ModelNames.detailViewModel);
+        var viewModel = this.getModel("copilotModel")
         if(!viewModel) {
-            viewModel = new JSONModel(new detailViewModel());
+            viewModel = new JSONModel(new copilotModel());
             viewModel.setSizeLimit(9999);
-            this.setModel(viewModel, ModelNames.detailViewModel);
+            this.setModel(viewModel, "copilotModel");
         } else {
             viewModel.refresh();
         }

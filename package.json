@@ -36,8 +36,8 @@
   "scripts": {
     "start": "cds-serve",
     "watch": "cds-tsx w",
-    "watch-products": "cds watch --open com.valantic.preorder.products/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-aircrafts": "cds watch --open com.valantic.aircrafts/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-aircrafts": "cds watch --open com.valantic.aircrafts/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-aviation": "cds watch --open com.valantic.aviation/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"

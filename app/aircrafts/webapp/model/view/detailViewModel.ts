@@ -7,11 +7,11 @@ export default class detailViewModel {
         this.detail = new DetailView()
     }
 
-    // public get details(): DetailView {
-    //     return this.detail;
-    // }
+    public get details(): DetailView {
+        return this.detail;
+    }
 
-    // public set details(value: DetailView) {
-    //     this.detail = value;
-    // }
+    public set details(value: DetailView) {
+        this.detail = value;
+    }
 }

@@ -1,0 +1,78 @@
+<mvc:View
+    xmlns:f="sap.f"
+    controllerName="com.valantic.aviation.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+>
+    <!-- <Page id="page" title="{i18n>title}"> -->
+    <f:FlexibleColumnLayout
+        layout="TwoColumnsBeginExpanded"
+        beginColumnNavigate="abc"
+    >
+        <f:beginColumnPages>
+            <Page title="Aircraft">
+                <content>
+                    <!-- <VBox alignItems="End">
+                        <Button icon="sap-icon://arrow-right" />
+                    </VBox> -->
+                    <form:SimpleForm
+                        id="aircraftForm"
+                        editable="true"
+                        layout="ColumnLayout"
+                        labelSpanL="3"
+                        labelSpanS="12"
+                        labelSpanXL="-1"
+                        labelSpanM="2"
+                        emptySpanL="2"
+                    >
+                        <form:content>
+                            <Label text="Manufacturer" />
+                            <Input value="{activeFormModel>/Manufacturer}" />
+
+                            <Label text="Model" />
+                            <Input value="{activeFormModel>/Model}" />
+
+                            <Label text="Capacity (Seats)" />
+                            <Input
+                                value="{activeFormModel>/Capacity}"
+                                type="Number"
+                            />
+
+                            <Label text="Range (km)" />
+                            <Input
+                                value="{activeFormModel>/Range}"
+                                type="Number"
+                            />
+
+                            <Label text="Engine Configuration" />
+                            <Input value="{activeFormModel>/EngineType}" />
+
+                            <Label text="Wingspan" />
+                            <Input value="{activeFormModel>/Wingspan}" />
+                        </form:content>
+                    </form:SimpleForm>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            text="Save"
+                            type="Emphasized"
+                            icon="sap-icon://save"
+                            press=".onSaveRecord"
+                        />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </f:beginColumnPages>
+        <f:midColumnPages>
+            <core:Fragment
+                fragmentName="com.valantic.aviation.view.fragments.chat"
+                type="XML"
+            />
+        </f:midColumnPages>
+    </f:FlexibleColumnLayout>
+    <!-- </Page> -->
+</mvc:View>

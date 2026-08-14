@@ -1,0 +1,10 @@
+.chatBubbleUser {
+    background-color: #e1f5fe;
+    border-radius: 12px 12px 0px 12px;
+    border: 1px solid #b3e5fc;
+}
+.chatBubbleAI {
+    background-color: #f5f5f5;
+    border-radius: 12px 12px 12px 0px;
+    border: 1px solid #e0e0e0;
+}
