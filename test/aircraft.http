@@ -8,6 +8,15 @@ Accept-Language: 'en'
 ###Search Aircraft by range
 GET http://localhost:4004/odata/v4/aircraft/searchAeroplaneByRange(range=5000)
 
+### Process Generic Entity
+POST http://localhost:4004/odata/v4/aviation/processGenericInput
+Content-Type: application/json
+
+{
+        "userPrompt": "Create draft entry for Boeing 787, range around 7000 KM with capacity of 300 passengers",
+        "entityName": "Aircrafts"
+}
+
 
 ### Delete Product
 DELETE http://localhost:4004/odata/v4/product/Products(ID='00000000-0000-0000-0000-000000000001')
@@ -35,9 +44,6 @@ Content-Type: application/json
         "addHangTag_ID": "TestEinkäufter"
 
 }
-
-###Get whether product is existing
-GET http://localhost:4004/odata/v4/product/checkForExistingProduct(supplierProductNumber='TestName',GTIN='TestGTIN')
 
 ###Create Product with existing KT
 POST http://localhost:4004/odata/v4/product/UploadProducts

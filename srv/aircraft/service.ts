@@ -13,7 +13,7 @@ class AircraftCreationService extends cds.ApplicationService {
         ? `here are top 2 reference record from my dataset, use to answer it instead of your traning data${referenceRecord}`
         : 'No reference record found use your traning knowledge';
       const messages = [
-        { role: 'system', content: `${defaultPrompt()}\n\n${referencText}` },
+        { role: 'system', content: `${defaultPrompt('1')}\n\n${referencText}` },
         ...histroy,
         { role: 'user', content: req.data.userPrompt }
       ]
