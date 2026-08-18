@@ -94,38 +94,6 @@ Content-Type: application/json
 ### Get Image URL
 GET http://localhost:4004/odata/v4/product/Products/00000000-0000-0000-0000-000000000001/getImageUrl()
 
-###Create Article with existing KT
-POST http://localhost:4004/odata/v4/product/Articles
-Content-Type: application/json
-
-{       
-        "supplier_ID":"98664237-ce10-433c-867d-3d46a3cde3c5",
-        "consumerTopic_ID": "f4444355-50a0-42ac-bb88-6823da932952",
-        "brand_ID": "33a2212c-a27b-411a-8d88-c9ddb3105a0b",
-        "currency_ID": "EUR",
-        "receiptText": "Receipt Text",
-        "supplierProductName": "Test Product Name",
-        "productText": "Common Text"
-}  
-
-###Update Article
-PATCH http://localhost:4004/odata/v4/product/Articles/d4f5b036-736a-4330-91d0-dada497b9609
-Content-Type: application/json
-
-{
-        "sizeRun": "XXL",
-        "basicDataText": "Basic Data Text"
-}
-
-###Update Product
-PATCH http://localhost:4004/odata/v4/product/Products/dbc261b0-d067-4c24-8898-a0b751c825b8
-Content-Type: application/json
-
-{
-        "supplierProductNumber": "7890654321",
-        "supplierColor": "Brown"
-}
-
 ###Mark for Deletion - Article
 POST http://localhost:4004/odata/v4/product/Articles/d4f5b036-736a-4330-91d0-dada497b9609/markForDeletion
 Content-Type: application/json
