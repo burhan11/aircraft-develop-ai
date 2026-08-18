@@ -12,14 +12,15 @@ export const defaultPrompt = (feature: string, parameters?: Record<string, strin
         Your task:
         1. Parse the user conversational prompt and extract values (Only values) and map them strictly to the matchable keys in the allowed fields list. Place these in the 'extracted' object.
         2. If any allowed fields are missing, use your industry knowledge and look up defaults for this type of record. Place these in the 'suggestions' object.
-        
+        3. If user ask about suggestions, then only fill suggestions object, and keep extracted empty
+        4. If user ask for any change then fill under changes object and keep extracted and suggestions empty
         Output structure:
         {
             "extracted": {"fieldName": "value"},
             "suggestions": {"fieldName": "value"},
-            "message": "One confirmation detailing what you processed."
+            "changes": {"fieldName": "value"},
+            "message": "Simple one liner what you have processed"
         }` 
       : ""
-
     return systemPrompt;
 }

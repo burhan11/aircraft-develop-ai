@@ -14,7 +14,8 @@ Content-Type: application/json
 
 {
         "userPrompt": "Create draft entry for Boeing 787, range around 7000 KM with capacity of 300 passengers",
-        "entityName": "Aircrafts"
+        "entityName": "Aircrafts",
+        "chatHistory": ""
 }
 
 

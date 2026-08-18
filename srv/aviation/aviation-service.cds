@@ -6,6 +6,6 @@ service AviationService {
     entity Suppliers as projection on aviation.Suppliers;
 
     // The generic AI action used by the chat fragment
-    action processGenericInput(userPrompt: String, entityName: String) returns String;
+    action processGenericInput(userPrompt: String, entityName: String, chatHistory: String) returns String;
 
 }

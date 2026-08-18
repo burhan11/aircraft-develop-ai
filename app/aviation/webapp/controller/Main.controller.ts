@@ -1,89 +1,86 @@
 import JSONModel from "sap/ui/model/json/JSONModel"
 import BaseController from "./BaseController.controller";
 import Event from "/sap/ui/base/Event";
+import { entityName, ModelName } from "../utils/constants";
 
 /**
  * @namespace com.valantic.aviation.controller
  */
 export default class Main extends BaseController {
 
+  private _chatMessages: Array<any> = [];
+  private _chatHistory: Array<any> = [];
+
   public onInit(): void {
 
   };
 
-  public async onSendCopilotMessage(): Promise<void> {
-    const userPrompt = this.byId("chatInputField")?.getValue();
-    const chatMessages = this.getLocalModel("copilotModel").getProperty(
+  public onAfterRendering(): void {
+    this._chatMessages = this.getLocalModel(ModelName.viewModel).getProperty(
       "/aircraft/chatMessages",
     );
-    const newUserChat = {
+  }
+
+  public async onSendCopilotMessage(): Promise<void> {
+    const userPrompt = this.byId("chatInputField")?.getValue();
+    const newUserPrompt = {
       "userType": "user",
       "message": userPrompt,
       "hasSuggestion": false,
       "suggestions": []
     }
-    chatMessages.push(newUserChat);
-    this.getLocalModel("copilotModel").setProperty(
+    this._chatMessages.push(newUserPrompt);
+    this.getLocalModel(ModelName.viewModel).setProperty(
       "/aircraft/chatMessages",
-      chatMessages
+      this._chatMessages
     );
-    // const response = await this.processChatInput(
-    //     "/processGenericInput", 
-    //     { userPrompt: userPrompt, entityName: "Aircrafts" }
-    // );
-    const tempModel = new JSONModel(
-      {
-        "extracted": {
-          "Model": "A380",
-          "Capacity": 200,
-          "Range": 7000
-        },
-        "suggestions": {
-          "Manufacturer": "Airbus",
-          "EngineType": "Piston engines",
-          "Wingspan": "79.75 meters"
-        },
-        "message": "Succesfuly processed."
-      }
+    this.getAIResponse(userPrompt);
+    this.byId("chatInputField").setValue("");
+  };
+
+  public async getAIResponse(prompt: string): Promise<void> {
+    debugger;
+    const chatHistory = JSON.stringify(this._chatHistory);
+    const responseModel: any = await this.processChatInput(
+      "/processGenericInput",
+      { userPrompt: prompt, entityName: entityName.Aircrafts, chatHistory: chatHistory }
     );
-    const extractedData = tempModel.getData().extracted;
-    this.getLocalModel("copilotModel").setProperty(
-      "/aircraft/formData",
-      extractedData
-    );
-    const suggestionData = tempModel.getData().suggestions;
-    const message = tempModel.getData().message;
-    const newAIChat = {
+    const response = JSON.parse(responseModel.processGenericInput);
+    if (Object.keys(response.extracted).length > 0) {
+      this.getLocalModel(ModelName.viewModel).setProperty(
+        "/aircraft/formData",
+        response.extracted
+      );
+    }
+    const newAIResponse = {
       "userType": "AI",
-      "message": message,
-      "hasSuggestion": Object.keys(suggestionData).length > 0,
-      "suggestions": Object.entries(suggestionData)
+      "message": response.message,
+      "hasSuggestion": Object.keys(response.suggestions).length > 0,
+      "suggestions": Object.entries(response.suggestions)
         .map(([key, value]) => {
           return { "fieldName": key, "value": value }
         })
     }
-    chatMessages.push(newAIChat);
-    this.getLocalModel("copilotModel").setProperty(
+    this._chatMessages.push(newAIResponse);
+    this.getLocalModel(ModelName.viewModel).setProperty(
       "/aircraft/chatMessages",
-      chatMessages
+      this._chatMessages
     );
-    this.byId("chatInputField").setValue("");
-  };
+    this.updateChatHistory(prompt, responseModel.processGenericInput);
+  }
 
   public onAcceptSuggestions(event: Event): void {
-    const oBindingContext = event.getSource().getBindingContext("copilotModel");
+    const oBindingContext = event.getSource().getBindingContext(ModelName.viewModel);
     const sPath = oBindingContext.getPath();     // Gives a path like "/chatMessages/0/suggestions/1"
     const oClickedData = oBindingContext.getObject();
-    const filledFormData = this.getLocalModel("copilotModel").getProperty(
+    const filledFormData = this.getLocalModel(ModelName.viewModel).getProperty(
       "/aircraft/formData"
     );
-    const fieldName = oClickedData.fieldName;
-    const value = oClickedData.value;
     const addToFormData = {
       ...filledFormData,
-      [fieldName]: value
+      [oClickedData.fieldName]: oClickedData.value
     }
-    this.getLocalModel("copilotModel").setProperty(
+    this.getLocalModel(ModelName.viewModel).setProperty(
       "/aircraft/formData",
       addToFormData
     );
@@ -91,7 +88,7 @@ export default class Main extends BaseController {
   };
 
   public onRejectSuggestions(event: Event): void {
-    var oBindingContext = event.getSource().getBindingContext("copilotModel");
+    var oBindingContext = event.getSource().getBindingContext(ModelName.viewModel);
     var sPath = oBindingContext.getPath();     // Gives a path like "/chatMessages/0/suggestions/1"
     this.removeSuggestedItem(oBindingContext, sPath);
   };
@@ -109,6 +106,13 @@ export default class Main extends BaseController {
     oModel.setProperty(sParentArrayPath, aSuggestions);
     oModel.refresh();
   };
+
+  public updateChatHistory(userPrompt: string, AIResponse: string): void {
+    this._chatHistory.push(
+      { role: 'user', content: userPrompt },
+      { role: 'AI', content: AIResponse }
+    )
+  }
 
   formatSuggestionText(fieldname: string, value: any): string {
     return `Suggested value for ${fieldname}: ${value}`;
