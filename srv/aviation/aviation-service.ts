@@ -1,6 +1,6 @@
 import cds, { Request } from '@sap/cds'
 import { enrichDataUsingAI } from '../lib/ai-functions';
-import { defaultPrompt } from '../systemPrompts/default-prompt';
+import { defaultPrompt } from '../lib/default-prompt';
 
 export class ManageAviation extends cds.ApplicationService {
 

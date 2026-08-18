@@ -1,5 +1,5 @@
 import cds, { Request } from '@sap/cds'
-import { defaultPrompt } from '../systemPrompts/default-prompt';
+import { defaultPrompt } from '../lib/default-prompt';
 import { enrichDataUsingAI } from '../lib/ai-functions';
 import referenceData from './data/aircraft-reference.json';
 

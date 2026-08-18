@@ -14,27 +14,35 @@
             >
                 <!-- Dynamic alignment: User on right, AI on left -->
                 <List
-                    items="{copilotModel>/messages}"
+                    items="{copilotModel>/aircraft/chatMessages}"
                     noDataText="Start conversation"
                 >
                     <CustomListItem>
                         <VBox
-                            class="sapUiSmallMarginBottom"
-                            alignItems="{= ${copilotModel>isUser} ? 'End' : 'Start' }"
+                            alignItems="{= ${copilotModel>userType} === 'user' ? 'End' : 'Start' }"
                         >
                             <!-- Custom styling classes applied via expressions -->
-                            <VBox
-                                width="80%"
-                                class="{= ${copilotModel>isUser} ? 'sapUiContentPadding chatBubbleUser' : 'sapUiContentPadding chatBubbleAI' }"
+                            <!-- <VBox> -->
+                            <Panel
+                                width="100%"
+                                backgroundDesign="Solid"
                             >
-                                <Text
-                                    text="{copilotModel>sender}"
-                                    class="sapUiTinyMarginBottom"
-                                />
-                                <Text text="{copilotModel>text}" />
+                                <VBox>
+                                    <Text
+                                        text="{= ${copilotModel>userType} === 'user' ? 'User' : 'AI' }"
+                                        class="{= ${copilotModel>userType} === 'user' ? 'sapUiTinyMarginEnd' : 'sapUiTinyMarginBegin' }"
+                                    />
+                                    <Text text="{copilotModel>message}" />
+                                </VBox>
+                            </Panel>
 
-                                <!-- Suggestion Interactive Bar -->
-                                <VBox id="idSuggestionBox">
+                            <!-- Suggestion Interactive Bar -->
+                            <VBox
+                                id="idSuggestionBox"
+                                items="{copilotModel>suggestions}"
+                                visible="{= ${copilotModel>hasSuggestion} === true}"
+                            >
+                                <items>
                                     <Panel
                                         width="100%"
                                         backgroundDesign="Solid"
@@ -42,10 +50,10 @@
                                         <content>
                                             <VBox>
                                                 <Text
-                                                    text="Manufacturer suggestion is Boeing"
+                                                    text="{parts: [{path: 'copilotModel>fieldName'}, {path: 'copilotModel>value'}],
+                                                            formatter: '.formatSuggestionText'}"
                                                 />
                                                 <HBox
-                                                    visible="{copilotModel>hasSuggestions}"
                                                     class="sapUiTinyMarginTop"
                                                 >
                                                     <Button
@@ -63,8 +71,9 @@
                                             </VBox>
                                         </content>
                                     </Panel>
-                                </VBox>
+                                </items>
                             </VBox>
+                            <!-- </VBox> -->
                         </VBox>
                     </CustomListItem>
                 </List>

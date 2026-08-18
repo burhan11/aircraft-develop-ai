@@ -24,7 +24,7 @@ export default abstract class BaseController extends Controller {
   ): Promise<Object> {
     return new Promise((resolve, reject) => {
       const dataV2Model = this.getODataModel(ModelNames.ODataV2Model);
-      dataV2Model.create(sEntityName, {
+      dataV2Model.read(sEntityName, {
         success: (data: any) => {
           resolve(data)
         },

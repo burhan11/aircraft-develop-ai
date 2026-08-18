@@ -7,10 +7,7 @@
     xmlns:form="sap.ui.layout.form"
 >
     <!-- <Page id="page" title="{i18n>title}"> -->
-    <f:FlexibleColumnLayout
-        layout="TwoColumnsBeginExpanded"
-        beginColumnNavigate="abc"
-    >
+    <f:FlexibleColumnLayout layout="TwoColumnsBeginExpanded">
         <f:beginColumnPages>
             <Page title="Aircraft">
                 <content>
@@ -29,28 +26,31 @@
                     >
                         <form:content>
                             <Label text="Manufacturer" />
-                            <Input value="{activeFormModel>/Manufacturer}" />
-
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Manufacturer}"
+                            />
                             <Label text="Model" />
-                            <Input value="{activeFormModel>/Model}" />
-
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Model}"
+                            />
                             <Label text="Capacity (Seats)" />
                             <Input
-                                value="{activeFormModel>/Capacity}"
+                                value="{copilotModel>/aircraft/formData/Capacity}"
                                 type="Number"
                             />
-
                             <Label text="Range (km)" />
                             <Input
-                                value="{activeFormModel>/Range}"
+                                value="{copilotModel>/aircraft/formData/Range}"
                                 type="Number"
                             />
-
                             <Label text="Engine Configuration" />
-                            <Input value="{activeFormModel>/EngineType}" />
-
+                            <Input
+                                value="{copilotModel>/aircraft/formData/EngineType}"
+                            />
                             <Label text="Wingspan" />
-                            <Input value="{activeFormModel>/Wingspan}" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Wingspan}"
+                            />
                         </form:content>
                     </form:SimpleForm>
                 </content>
