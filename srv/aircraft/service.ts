@@ -39,13 +39,13 @@ class AircraftCreationService extends cds.ApplicationService {
     const userPromptLower = userPrompt?.toLowerCase();
     const response = referenceData.map((record) => {
       const refRecord = `${record.model} ${record.manufacturer} ${record.category} ${record.category} ${record.range}`;
-      const words = refRecord.toLowerCase().split('/\s+/');
+      const words = refRecord.toLowerCase().split(/\s+/);
       const score = words.filter((item) => userPromptLower?.includes(item)).length;
       return { record, score }
     });
     return response
       .filter(item => item.score > 0)
-      .sort((a: any, b: any) => b - a)
+      .sort((a: any, b: any) => b.score - a.score)
       .slice(0, 2)
       .map((entry) => entry.record);
   }
