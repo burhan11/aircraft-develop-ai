@@ -6,16 +6,27 @@
     xmlns="sap.m"
     xmlns:form="sap.ui.layout.form"
 >
-    <!-- <Page id="page" title="{i18n>title}"> -->
     <f:FlexibleColumnLayout layout="TwoColumnsBeginExpanded">
         <f:beginColumnPages>
-            <Page title="Aircraft">
+            <Page id="entityPage" title="{= ${copilotModel>/selectedEntity} ? ${copilotModel>/selectedEntity} : 'Aircrafts' }">
+                <headerContent>
+                    <HBox alignItems="Center">
+                        <Label text="Select Object: " class="sapUiTinyMarginEnd" />
+                        <Select
+                            id="entitySelector"
+                            selectedKey="{copilotModel>/selectedEntity}"
+                            change=".onEntityChange"
+                        >
+                            <core:Item key="Aircrafts" text="Aircrafts" />
+                            <core:Item key="Suppliers" text="Suppliers" />
+                        </Select>
+                    </HBox>
+                </headerContent>
                 <content>
-                    <!-- <VBox alignItems="End">
-                        <Button icon="sap-icon://arrow-right" />
-                    </VBox> -->
+                    <!-- Form for Aircrafts -->
                     <form:SimpleForm
                         id="aircraftForm"
+                        visible="{= ${copilotModel>/selectedEntity} === 'Aircrafts' || !${copilotModel>/selectedEntity} }"
                         editable="true"
                         layout="ColumnLayout"
                         labelSpanL="3"
@@ -53,6 +64,43 @@
                             />
                         </form:content>
                     </form:SimpleForm>
+
+                    <!-- Form for Suppliers -->
+                    <form:SimpleForm
+                        id="suppliersForm"
+                        visible="{= ${copilotModel>/selectedEntity} === 'Suppliers' }"
+                        editable="true"
+                        layout="ColumnLayout"
+                        labelSpanL="3"
+                        labelSpanS="12"
+                        labelSpanXL="-1"
+                        labelSpanM="2"
+                        emptySpanL="2"
+                    >
+                        <form:content>
+                            <Label text="Supplier Name" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/SupplierName}"
+                            />
+                            <Label text="Country" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Country}"
+                            />
+                            <Label text="Tax ID" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/TaxId}"
+                            />
+                            <Label text="Payment Terms" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/PaymentTerms}"
+                            />
+                            <Label text="Contact Email" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/ContactEmail}"
+                                type="Email"
+                            />
+                        </form:content>
+                    </form:SimpleForm>
                 </content>
                 <footer>
                     <OverflowToolbar>
@@ -74,5 +122,5 @@
             />
         </f:midColumnPages>
     </f:FlexibleColumnLayout>
-    <!-- </Page> -->
 </mvc:View>
+
