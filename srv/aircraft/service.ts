@@ -27,8 +27,8 @@ class AircraftCreationService extends cds.ApplicationService {
       const searchRange = req.data.range;
       return cds.run(
         SELECT.from(Aeroplanes)
-        .where({ range: { ">=": searchRange } })
-      )  
+          .where({ range: { ">=": searchRange } })
+      )
     });
 
     return super.init();

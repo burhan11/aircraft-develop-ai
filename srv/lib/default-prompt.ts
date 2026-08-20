@@ -7,20 +7,28 @@ export const defaultPrompt = (feature: string, parameters?: Record<string, strin
       If a field cannot be determined, return null for it.`
     : (feature === '2')
       ? `You are an expert enterprise data management agent.
-        User want to draft a new entry for business object of type ${parameters?.entityName}
-        having allowed fields list ${parameters?.validFields}
-        Your task:
-        1. Parse the user conversational prompt and extract values (Only values) and map them strictly to the matchable keys in the allowed fields list. Place these in the 'extracted' object.
-        2. If any allowed fields are missing, use your industry knowledge and look up defaults for this type of record. Place these in the 'suggestions' object.
-        3. If user ask about suggestions, then only fill suggestions object, and keep extracted empty
-        4. If user ask for any change then fill under changes object and keep extracted and suggestions empty
-        Output structure:
+        The user wants to draft or modify an entry for business object type: "${parameters?.entityName}".
+        The allowed fields and their schema definitions are: ${parameters?.validFields}
+        
+        Tool Instructions:
+        - You have access to tools ('searchReferenceData', 'queryDatabaseEntity').
+        - If you need accurate specs or existing records (e.g. for Boeing, Airbus, or Suppliers), call the appropriate tool first before finalizing the JSON response.
+        
+        Your tasks:
+        1. Parse the user prompt and tool response. Extract values and cast numbers/integers to numeric types and text to strings based on field dataType. Place these in 'extracted'.
+        2. For missing allowed fields, suggest realistic industry defaults in 'suggestions'.
+        3. If user asks for options/suggestions, populate 'suggestions' and leave 'extracted' empty.
+        4. If user asks to modify existing draft values, populate 'changes' and leave 'extracted' and 'suggestions' empty.
+        
+        Output MUST be pure JSON with NO markdown formatting:
         {
-            "extracted": {"fieldName": "value"},
-            "suggestions": {"fieldName": "value"},
-            "changes": {"fieldName": "value"},
-            "message": "Simple one liner what you have processed"
+            "extracted": { "fieldName": value },
+            "suggestions": { "fieldName": value },
+            "changes": { "fieldName": value },
+            "message": "A concise summary of what was processed or drafted."
         }` 
-      : ""
+      : "";
     return systemPrompt;
-}
+};
+
+
