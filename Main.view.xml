@@ -1,0 +1,126 @@
+<mvc:View
+    xmlns:f="sap.f"
+    controllerName="com.valantic.aviation.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+>
+    <f:FlexibleColumnLayout layout="TwoColumnsBeginExpanded">
+        <f:beginColumnPages>
+            <Page id="entityPage" title="{= ${copilotModel>/selectedEntity} ? ${copilotModel>/selectedEntity} : 'Aircrafts' }">
+                <headerContent>
+                    <HBox alignItems="Center">
+                        <Label text="Select Object: " class="sapUiTinyMarginEnd" />
+                        <Select
+                            id="entitySelector"
+                            selectedKey="{copilotModel>/selectedEntity}"
+                            change=".onEntityChange"
+                        >
+                            <core:Item key="Aircrafts" text="Aircrafts" />
+                            <core:Item key="Suppliers" text="Suppliers" />
+                        </Select>
+                    </HBox>
+                </headerContent>
+                <content>
+                    <!-- Form for Aircrafts -->
+                    <form:SimpleForm
+                        id="aircraftForm"
+                        visible="{= ${copilotModel>/selectedEntity} === 'Aircrafts' || !${copilotModel>/selectedEntity} }"
+                        editable="true"
+                        layout="ColumnLayout"
+                        labelSpanL="3"
+                        labelSpanS="12"
+                        labelSpanXL="-1"
+                        labelSpanM="2"
+                        emptySpanL="2"
+                    >
+                        <form:content>
+                            <Label text="Manufacturer" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Manufacturer}"
+                            />
+                            <Label text="Model" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Model}"
+                            />
+                            <Label text="Capacity (Seats)" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Capacity}"
+                                type="Number"
+                            />
+                            <Label text="Range (km)" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Range}"
+                                type="Number"
+                            />
+                            <Label text="Engine Configuration" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/EngineType}"
+                            />
+                            <Label text="Wingspan" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Wingspan}"
+                            />
+                        </form:content>
+                    </form:SimpleForm>
+
+                    <!-- Form for Suppliers -->
+                    <form:SimpleForm
+                        id="suppliersForm"
+                        visible="{= ${copilotModel>/selectedEntity} === 'Suppliers' }"
+                        editable="true"
+                        layout="ColumnLayout"
+                        labelSpanL="3"
+                        labelSpanS="12"
+                        labelSpanXL="-1"
+                        labelSpanM="2"
+                        emptySpanL="2"
+                    >
+                        <form:content>
+                            <Label text="Supplier Name" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/SupplierName}"
+                            />
+                            <Label text="Country" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/Country}"
+                            />
+                            <Label text="Tax ID" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/TaxId}"
+                            />
+                            <Label text="Payment Terms" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/PaymentTerms}"
+                            />
+                            <Label text="Contact Email" />
+                            <Input
+                                value="{copilotModel>/aircraft/formData/ContactEmail}"
+                                type="Email"
+                            />
+                        </form:content>
+                    </form:SimpleForm>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            text="Save"
+                            type="Emphasized"
+                            icon="sap-icon://save"
+                            press=".onSaveRecord"
+                        />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </f:beginColumnPages>
+        <f:midColumnPages>
+            <core:Fragment
+                fragmentName="com.valantic.aviation.view.fragments.chat"
+                type="XML"
+            />
+        </f:midColumnPages>
+    </f:FlexibleColumnLayout>
+</mvc:View>
+

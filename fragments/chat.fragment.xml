@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Page
+        title="AI Copilot"
+        class="sapUiContentPadding"
+    >
+        <content>
+            <ScrollContainer
+                id="chatScrollContainer"
+                height="85%"
+                vertical="true"
+            >
+                <!-- Dynamic alignment: User on right, AI on left -->
+                <List
+                    items="{copilotModel>/aircraft/chatMessages}"
+                    noDataText="Start conversation"
+                >
+                    <CustomListItem>
+                        <VBox
+                            alignItems="{= ${copilotModel>userType} === 'user' ? 'End' : 'Start' }"
+                        >
+                            <!-- Custom styling classes applied via expressions -->
+                            <!-- <VBox> -->
+                            <Panel
+                                width="100%"
+                                backgroundDesign="Solid"
+                            >
+                                <VBox>
+                                    <Text
+                                        text="{= ${copilotModel>userType} === 'user' ? 'User' : 'AI' }"
+                                        class="{= ${copilotModel>userType} === 'user' ? 'sapUiTinyMarginEnd' : 'sapUiTinyMarginBegin' }"
+                                    />
+                                    <Text text="{copilotModel>message}" />
+                                </VBox>
+                            </Panel>
+
+                            <!-- Suggestion Interactive Bar -->
+                            <VBox
+                                id="idSuggestionBox"
+                                items="{copilotModel>suggestions}"
+                                visible="{= ${copilotModel>hasSuggestion} === true}"
+                            >
+                                <items>
+                                    <Panel
+                                        width="100%"
+                                        backgroundDesign="Solid"
+                                    >
+                                        <content>
+                                            <VBox>
+                                                <Text
+                                                    text="{parts: [{path: 'copilotModel>fieldName'}, {path: 'copilotModel>value'}],
+                                                            formatter: '.formatSuggestionText'}"
+                                                />
+                                                <HBox
+                                                    class="sapUiTinyMarginTop"
+                                                >
+                                                    <Button
+                                                        type="Accept"
+                                                        icon="sap-icon://accept"
+                                                        press=".onAcceptSuggestions"
+                                                    />
+                                                    <Button
+                                                        class="sapUiTinyMarginBegin"
+                                                        type="Reject"
+                                                        icon="sap-icon://decline"
+                                                        press=".onRejectSuggestions"
+                                                    />
+                                                </HBox>
+                                            </VBox>
+                                        </content>
+                                    </Panel>
+                                </items>
+                            </VBox>
+                            <!-- </VBox> -->
+                        </VBox>
+                    </CustomListItem>
+                </List>
+            </ScrollContainer>
+        </content>
+        <footer>
+            <OverflowToolbar height="60px">
+                <TextArea
+                    id="chatInputField"
+                    placeholder="e.g. Create a Aircraft..."
+                    width="90%"
+                />
+                <Button
+                    class="sapUiSmallMarginTop"
+                    icon="sap-icon://paper-plane"
+                    type="Emphasized"
+                    press=".onSendCopilotMessage"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</core:FragmentDefinition>
