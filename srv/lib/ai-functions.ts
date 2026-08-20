@@ -19,7 +19,8 @@ export const defaultAviationTools: AITool[] = [
       properties: {
         query: { type: "string", description: "Keyword search string (e.g. 'Boeing', 'A350', 'long-haul')" }
       },
-      required: ["query"]
+      required: ["query"],
+      additionalProperties: false
     },
     execute: (args: { query: string }) => {
       const q = (args.query || "").toLowerCase();
@@ -40,7 +41,8 @@ export const defaultAviationTools: AITool[] = [
         filterKey: { type: "string", description: "Field name to filter on e.g. Country or Manufacturer" },
         filterValue: { type: "string", description: "Value to match e.g. Germany or Boeing" }
       },
-      required: ["entityName"]
+      required: ["entityName"],
+      additionalProperties: false
     },
     execute: async (args: { entityName: string; filterKey?: string; filterValue?: string }) => {
       try {
@@ -82,36 +84,38 @@ export const enrichDataUsingAI = async (sInput: any, tools: AITool[] = defaultAv
     if (tools && tools.length > 0) {
       const openAITools = tools.map(t => ({
         type: "function" as const,
-        function: {
-          name: t.name,
-          description: t.description,
-          parameters: t.parameters
-        }
+        name: t.name,
+        description: t.description,
+        parameters: t.parameters,
+        strict: false
       }));
 
       const messages: any[] = [
         { role: "user", content: typeof sInput === "string" ? sInput : JSON.stringify(sInput) }
       ];
 
-      let completion = await openAI.chat.completions.create({
+      let completion = await openAI.responses.create({
         model: modelName,
-        messages,
-        tools: openAITools
+        input: messages,
+        tools: openAITools,
       });
 
-      let message = completion.choices[0]?.message;
+      let message = completion;
 
       // Function calling loop (up to 1 turns)
       let maxTurns = 1;
-      while (message?.tool_calls && message.tool_calls.length > 0 && maxTurns > 0) {
+      while (message?.output && message.output.length > 0 && maxTurns > 0) {
         maxTurns--;
-        messages.push(message);
+        // messages.push({
+        //   role: "assistant",
+        //   content: JSON.stringify(message)
+        // });
 
-        for (const toolCall of (message.tool_calls as any[])) {
-          const toolName = toolCall.function?.name;
+        for (const toolCall of (message.output as any[])) {
+          const toolName = toolCall?.name;
           let toolArgs = {};
           try {
-            toolArgs = toolCall.function?.arguments ? JSON.parse(toolCall.function.arguments) : {};
+            toolArgs = toolCall?.arguments ? JSON.parse(toolCall.arguments) : {};
           } catch {
             toolArgs = {};
           }
@@ -131,27 +135,28 @@ export const enrichDataUsingAI = async (sInput: any, tools: AITool[] = defaultAv
           }
 
           messages.push({
-            role: "tool",
-            tool_call_id: toolCall.id,
-            content: toolResult
+            type: "function_call_output" as const,
+            call_id: toolCall.call_id,
+            output: toolResult,
           });
         }
 
-        completion = await openAI.chat.completions.create({
+        completion = await openAI.responses.create({
           model: modelName,
-          messages,
+          previous_response_id: message.id,
+          input: messages,
           tools: openAITools
         });
-        message = completion.choices[0]?.message;
+        message = completion;
       }
 
-      outputText = message?.content || "";
+      outputText = message?.output_text || "";
     } else {
-      const completion = await openAI.chat.completions.create({
+      const completion = await openAI.responses.create({
         model: modelName,
-        messages: [{ role: "user", content: typeof sInput === "string" ? sInput : JSON.stringify(sInput) }]
+        input: [{ role: "user", content: typeof sInput === "string" ? sInput : JSON.stringify(sInput) }]
       });
-      outputText = completion.choices[0]?.message?.content || "";
+      outputText = completion.output_text || "";
     }
   } catch (err) {
     if ((openAI as any).responses) {
